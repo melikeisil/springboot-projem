@@ -26,7 +26,7 @@ public class UserApiController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    // Kullanıcı kaydı
+   
     @PostMapping(value = "/users", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> registerUser(@RequestBody Map<String, String> userData) {
         try {
@@ -39,7 +39,7 @@ public class UserApiController {
                 }
             });
 
-            // Validation
+           
             Map<String, String> errors = new HashMap<>();
 
             String firstName = userData.get("firstName");
@@ -66,7 +66,7 @@ public class UserApiController {
                 return ResponseEntity.badRequest().body(errors);
             }
 
-            // Create user object
+            
             User user = new User();
             user.setEmail(email.trim());
             user.setPassword(password);
@@ -88,7 +88,7 @@ public class UserApiController {
         }
     }
 
-    // Kullanıcı girişi
+  
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials, jakarta.servlet.http.HttpSession session) {
         try {
@@ -101,7 +101,7 @@ public class UserApiController {
             );
 
             if (user.isPresent()) {
-                // Set user in session
+               
                 session.setAttribute("user", user.get());
                 System.out.println("User logged in successfully: " + user.get().getEmail());
                 System.out.println("Session ID after login: " + session.getId());
@@ -121,7 +121,7 @@ public class UserApiController {
         }
     }
 
-    // Kullanıcı bilgilerini getir
+    
     @GetMapping("/users/{id}")
     public ResponseEntity<?> getUser(@PathVariable Long id) {
         Optional<User> user = userService.findById(id);
@@ -132,14 +132,14 @@ public class UserApiController {
         }
     }
 
-    // Email ile kullanıcı kontrolü
+    
     @GetMapping("/users/check-email")
     public ResponseEntity<?> checkEmail(@RequestParam String email) {
         boolean exists = userService.existsByEmail(email);
         return ResponseEntity.ok(Map.of("exists", exists));
     }
 
-    // Kullanıcı bilgilerini güncelle
+
     @PutMapping("/users/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Long id, @Valid @RequestBody User updatedUser, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
