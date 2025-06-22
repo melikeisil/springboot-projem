@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Ownify</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Ana CSS dosyanızı buraya bağlayın -->
+    <link rel="stylesheet" href="c.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content container">
+            <div class="welcome-text">Welcome to Ownify Online marketplace platform.</div>
+            <div class="follow-links">
+                <span>Follow us</span>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+              
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content container">
+            <div class="logo">
+                <div class="logo-circle">
+                    <span class="logo-icon">O</span>
+                </div>
+                <span class="logo-text">Ownify</span>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for products...">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+                 <style>
+.header-icons {
+
+    visibility: hidden;
+}
+
+.signButton{
+    visibility: hidden;
+}
+          </style>    
+            <div class="header-actions">
+                <div class="header-icons">
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-shopping-cart"></i>
+                    <i class="fas fa-user"></i>
+                
+
+<button class="login-btn">
+    <a href="signin.html" style="text-decoration: none; color: inherit;">Log In</a>
+</button>
+<button class="signup-btn">
+    <a href="signup.html" style="text-decoration: none; color: inherit;">Sign Up</a>
+</button>
+
+               
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+   <!-- Navigation -->
+<nav class="nav-section">
+    <div class="header-bottom container">
+        <div class="nav-menu">
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    <i class="fas fa-bars"></i>
+                    All Category
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <div class="category-item">
+                        <a href="shop.html?category=computer-laptop" class="main-category">Computer & Laptop</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=car" class="main-category">Car</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=smartphone" class="main-category">SmartPhone</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=tv-appliances" class="main-category">TV & Homes Appliances</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=electronic-accessories" class="main-category">Electronic Accessories</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=house" class="main-category">House</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=land" class="main-category">Land</a>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="customerSupport.html" class="nav-item">
+                <i class="fas fa-headphones"></i>
+                Customer Support
+            </a>
+              
+            <a href="faqs.html" class="nav-item">
+                <i class="fas fa-question-circle"></i>
+                Need Help
+            </a>
+            
+            <div class="contact-info">
+                <i class="fas fa-phone"></i>
+                <span>+1 202 555 0106</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <span class="breadcrumb-separator">></span>
+                <a href="#">User Account</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Sign Up</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Section -->
+    <section class="signin-section">
+        <div class="container">
+            <div class="signin-wrapper">
+                <!-- Tabs -->
+                <div class="signin-tabs">
+                    <button class="tab-btn" onclick="switchTab('signin')">Sign In</button>
+                    <button class="tab-btn active" onclick="switchTab('signup')">Sign Up</button>
+                </div>
+                
+                <!-- Sign Up Form -->
+                <div class="signin-form">
+                    <form id="signup-form">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-input" placeholder="Name" id="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="surname" class="form-input" placeholder="Surname" id="surname" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-input" placeholder="Email Address" id="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="password-container">
+                                <input type="password" name="password" class="form-input" placeholder="Password" id="password" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('password', 'password-icon')">
+                                    <i class="fas fa-eye" id="password-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="password-container">
+                                <input type="password" name="confirm-password"class="form-input" placeholder="Confirm Password" id="confirm-password" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('confirm-password', 'confirm-password-icon')">
+                                    <i class="fas fa-eye" id="confirm-password-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="signin-btn">
+                            <i class="fas fa-user-plus"></i>
+                            SIGN UP
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <div class="logo-circle">
+                            <span class="logo-icon">O</span>
+                        </div>
+                        <span class="logo-text">Ownify</span>
+                    </div>
+                    <div class="footer-contact">
+                        <p><strong>VISIT OUR STORE</strong></p>
+                        <p>2548 Brooke Street</p>
+                        <p>Colorado, New York 80202</p>
+                        <p><strong>+1 202 555 0106</strong></p>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>TOP CATEGORY</h4>
+                        <ul>
+                            <li><a href="#">Computer</a></li>
+                            <li><a href="#">Laptop</a></li>
+                            <li><a href="#">Camera</a></li>
+                            <li><a href="#">Car</a></li>
+                            <li><a href="#">Electronics</a></li>
+                            <li><a href="#">TV & Home Appliances</a></li>
+                        </ul>
+                        <a href="#" class="browse-all">Browse all categories >></a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>QUICK LINKS</h4>
+                        <ul>
+                            <li><a href="shopPage.html">Shop</a></li>
+                         
+                            <li><a href="wishlist.html">Wishlist</a></li>
+                        
+                            <li><a href="customerSupport.html">Customer Help</a></li>
+                            <li><a href="aboutUs.html">About Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Copyright © Ownify Template All rights reserved. Developed by Templateseller.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Tab switching functionality
+        function switchTab(tab) {
+            if (tab === 'signin') {
+                window.location.href = 'signin.html'; // Sign In sayfasına yönlendir
+            } else {
+                // Sign Up tab zaten aktif
+                document.querySelector('.tab-btn.active').classList.remove('active');
+                document.querySelector('.tab-btn:last-child').classList.add('active');
+            }
+        }
+
+        // Password toggle functionality
+        function togglePassword(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+        
+// Form submission
+document.getElementById('signup-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const surname = document.getElementById('surname').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    
+    // Password match kontrolü
+    if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+    }
+    
+    // Form validation
+    if (!name || !surname || !email || !password || !confirmPassword) {
+        alert('Please fill in all fields.');
+        return;
+    }
+    
+    const data = {
+        firstName: name,    // name -> firstName olarak değiştirildi
+        lastName: surname,  // surname -> lastName olarak değiştirildi
+        email: email,
+        password: password
+    };
+    
+    try {
+        const response = await fetch('http://localhost:8080/api/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        
+        if (response.ok) {
+            const result = await response.json();
+            alert('Sign up successful! Welcome to Ownify.');
+            window.location.href = 'signin.html';
+        } else {
+            const errorData = await response.json();
+            if (typeof errorData === 'object') {
+                const errorMessages = Object.values(errorData).join('\n');
+                alert('Sign up failed:\n' + errorMessages);
+            } else {
+                alert('Sign up failed: ' + errorData);
+            }
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Network error. Please try again.');
+    }
+});
+
+
+
+
+
+
+
+
+        // Social login handlers
+        document.querySelector('.google-btn').addEventListener('click', function() {
+            alert('Google sign up will be implemented here');
+        });
+
+        document.querySelector('.apple-btn').addEventListener('click', function() {
+            alert('Apple sign up will be implemented here');
+        });
+
+
+
+
+
+
+
+// Arama fonksiyonları
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('.search-input');
+    const searchBtn = document.querySelector('.search-btn');
+    
+    // Arama butonuna tıklayınca
+    searchBtn.addEventListener('click', function() {
+        performSearch();
+    });
+    
+    // Enter tuşuna basınca
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+    
+    // Gerçek zamanlı arama (kullanıcı yazarken)
+    searchInput.addEventListener('input', function() {
+        // Biraz gecikme ile arama yap (kullanıcı yazmayı bitirsin diye)
+        clearTimeout(window.searchTimeout);
+        window.searchTimeout = setTimeout(performSearch, 300);
+    });
+    
+    function performSearch() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const products = document.querySelectorAll('.product-item');
+        let foundCount = 0;
+        
+        products.forEach(product => {
+            // Ürün başlığı, açıklama, fiyat vb. alanları kontrol et
+            const productTitle = product.querySelector('.product-title, .product-name, h3, h4')?.textContent?.toLowerCase() || '';
+            const productDescription = product.querySelector('.product-description, .product-desc, p')?.textContent?.toLowerCase() || '';
+            const productPrice = product.querySelector('.price, .product-price')?.textContent?.toLowerCase() || '';
+            const productCategory = product.getAttribute('data-category') || '';
+            
+            // Tüm metin içeriğini birleştir
+            const allText = `${productTitle} ${productDescription} ${productPrice} ${productCategory}`.toLowerCase();
+            
+            if (searchTerm === '' || allText.includes(searchTerm)) {
+                product.style.display = 'block';
+                foundCount++;
+            } else {
+                product.style.display = 'none';
+            }
+        });
+        
+        // Sonuç sayısını göster
+        showSearchResults(searchTerm, foundCount);
+    }
+    
+    function showSearchResults(searchTerm, count) {
+        // Varsa önceki sonuç mesajını kaldır
+        const existingResult = document.querySelector('.search-result-message');
+        if (existingResult) {
+            existingResult.remove();
+        }
+        
+        if (searchTerm !== '') {
+            // Sonuç mesajı oluştur
+            const resultMessage = document.createElement('div');
+            resultMessage.className = 'search-result-message';
+            resultMessage.style.cssText = `
+                padding: 15px;
+                margin: 20px 0;
+                background: #f8f9fa;
+                border-left: 4px solid #007bff;
+                border-radius: 4px;
+            `;
+            
+            if (count > 0) {
+                resultMessage.innerHTML = `
+                    <strong>${count}</strong> product${count !== 1 ? 's' : ''} found for "<strong>${searchTerm}</strong>"
+                    <button onclick="clearSearch()" style="float: right; background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Clear</button>
+                `;
+            } else {
+                resultMessage.innerHTML = `
+                    No products found for "<strong>${searchTerm}</strong>"
+                    <button onclick="clearSearch()" style="float: right; background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Clear</button>
+                `;
+            }
+            
+            // Ürün listesinin üstüne ekle
+            const productContainer = document.querySelector('.products-container, .product-grid, .products-grid, main');
+            if (productContainer) {
+                productContainer.insertBefore(resultMessage, productContainer.firstChild);
+            }
+        }
+    }
+    
+    // Global fonksiyon - Clear butonuna tıklayınca
+    window.clearSearch = function() {
+        searchInput.value = '';
+        performSearch(); // Tüm ürünleri göster
+    }
+});
+
+// CSS stilleri dinamik olarak ekle
+const searchStyles = `
+    .search-result-message {
+        animation: fadeIn 0.3s ease-in;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .product-item {
+        transition: all 0.3s ease;
+    }
+    
+    .search-input:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+`;
+
+// Stilleri head'e ekle
+const styleSheet = document.createElement('style');
+styleSheet.textContent = searchStyles;
+document.head.appendChild(styleSheet);
+
+
+
+    </script>
+</body>
+</html>

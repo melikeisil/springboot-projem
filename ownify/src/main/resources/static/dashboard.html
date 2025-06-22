@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Ownify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="c.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="welcome-text">Welcome to Ownify online marketplace platform.</div>
+                <div class="follow-links">
+                    <span>Follow us</span>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-circle">
+                        <span class="logo-icon">O</span>
+                    </div>
+                    <span class="logo-text">Ownify</span>
+                </div>
+
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search for anything...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+<div class="header-actions">                     
+    <div class="header-icons">                         
+        <a href="messaging.html" style="text-decoration: none; color: inherit;"> <i class="fas fa-comment-alt"></i> </a>                                                       
+        <a href="wishlist.html" style="text-decoration: none; color: inherit;">
+            <i class="fas fa-heart"></i>
+        </a>                         
+        <a href="dashboard.html" style="text-decoration: none; color: inherit;">
+            <i class="fas fa-user-circle"></i>
+        </a>                     
+    </div>                 
+</div>
+
+
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Section -->
+    <!-- Navigation -->
+<nav class="nav-section">
+    <div class="header-bottom container">
+        <div class="nav-menu">
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    <i class="fas fa-bars"></i>
+                    All Category
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <div class="category-item">
+                        <a href="shop.html?category=computer-laptop" class="main-category">Computer & Laptop</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=car" class="main-category">Car</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=smartphone" class="main-category">SmartPhone</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=tv-appliances" class="main-category">TV & Homes Appliances</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=electronic-accessories" class="main-category">Electronic Accessories</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=house" class="main-category">House</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=land" class="main-category">Land</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="customerSupport.html" class="nav-item">
+                <i class="fas fa-headphones"></i>
+                Customer Support
+            </a>
+
+            <a href="faqs.html" class="nav-item">
+                <i class="fas fa-question-circle"></i>
+                Need Help
+            </a>
+
+            <div class="contact-info">
+                <i class="fas fa-phone"></i>
+                <span>+1 202 555 0106</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+    <!-- Breadcrumb Section -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <span class="breadcrumb-separator">></span>
+                <a href="#">User Account</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Dashboard</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Main Content -->
+    <div class="dashboard-main">
+        <div class="container">
+            <div class="dashboard-wrapper">
+                <!-- Dashboard Sidebar -->
+                <div class="dashboard-sidebar">
+                    <div class="dashboard-menu">
+                        <div class="menu-item active">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </div>
+                        <div class="menu-item" onclick="window.location.href='wishlist.html'" style="cursor: pointer;">
+                            <i class="fas fa-heart"></i>
+                            <span>Wishlist</span>
+                        </div>
+                        <div class="menu-item" onclick="window.location.href='dashboardSetting.html'" style="cursor: pointer;">
+                            <i class="fas fa-cog"></i>
+                            <span>Setting</span>
+                        </div>
+                        <div class="menu-item" onclick="logout()" style="cursor: pointer;">                             
+    <i class="fas fa-sign-out-alt"></i>                             
+    <span>Log-out</span>                         
+</div>
+
+<script>
+window.onload = function() {
+  // Check if user is logged in via localStorage or has a valid session cookie
+  // The server-side session check will handle authentication properly
+  // This client-side check is just to prevent unnecessary redirects
+  if (localStorage.getItem("isLoggedIn") !== "true") {
+    // Instead of immediately redirecting, check if we were redirected from a successful login
+    // by checking the referrer or a URL parameter
+    const fromLogin = document.referrer.includes('/api/login') || 
+                      document.referrer.includes('/login') ||
+                      window.location.href.includes('/dashboard');
+
+    if (!fromLogin) {
+      window.location.href = "signin.html";
+    } else {
+      // If we came from login, set localStorage to prevent future redirects
+      localStorage.setItem("isLoggedIn", "true");
+    }
+  }
+
+  // Fetch user information from the server
+  fetchUserInfo();
+}
+
+// Function to fetch user information from the server
+function fetchUserInfo() {
+  fetch('/getUserInfo', {
+    method: 'GET',
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest'
+    },
+    credentials: 'include' // Include session cookies
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to fetch user information');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Update the user details section with the actual user's information
+    const fullName = data.name + ' ' + data.surname;
+    document.getElementById('user-name').textContent = fullName;
+    document.getElementById('user-email').textContent = 'Email: ' + data.email;
+  })
+  .catch(error => {
+    console.error('Error fetching user information:', error);
+    // If there's an error, show a message to the user
+    document.getElementById('user-name').textContent = 'Error loading user information';
+    document.getElementById('user-email').textContent = 'Please refresh the page or try again later';
+  });
+}
+
+function logout() {
+    if (confirm('Are you sure to logging out ?')) {
+
+
+  localStorage.removeItem("isLoggedIn");
+
+  window.location.href = 'index.html';
+     }
+}
+</script>
+                    </div>
+                </div>
+
+                <!-- Dashboard Content -->
+                <div class="dashboard-content">
+                    <div class="dashboard-sections">
+                        <!-- Account Info Section -->
+                        <div class="account-section">
+                            <div class="section-header">
+                                <h2>ACCOUNT INFO</h2>
+                            </div>
+
+                            <div class="account-info">
+                                <div class="user-details">
+                                    <h3 id="user-name">Loading...</h3>
+                                    <p class="user-email" id="user-email">Email: Loading...</p>
+
+                                    <button class="edit-btn" onclick="window.location.href='dashboardSetting.html'">EDIT ACCOUNT</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ADS Section -->
+                        <div class="ads-section">
+                            <div class="section-header">
+                                <h2>ADS</h2>
+                            </div>
+
+                            <div class="ads-content">
+                                <div class="ads-actions">
+                                    <button class="edit-profile-btn" onclick="window.location.href='adPosting.html'">EDIT /POST ADS</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-contact">
+                    <div class="footer-logo">
+                        <div class="logo-circle">
+                            <span class="logo-icon">O</span>
+                        </div>
+                        <span class="logo-text">Ownify</span>
+                    </div>
+
+                    <p>Customer Support:</p>
+                    <p>(629) 555-0129</p>
+
+                    <p>Address:</p>
+                    <p>4917 Washington Ave.</p>
+                    <p>Manchester, Kentucky 39495</p>
+
+                    <p>Email:</p>
+                    <p>info@ownify.com</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>TOP CATEGORY</h4>
+                        <ul>
+                            <li><a href="#">House</a></li>
+                            <li><a href="#">Land</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Camera</a></li>
+                            <li><a href="#">TV Controller</a></li>
+                            <li><a href="#">Browse All Products</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>QUICK LINKS</h4>
+                        <ul>
+                            <li><a href="shopPage.html">Shop</a></li>
+                            <li><a href="wishlist.html">Wishlist</a></li>
+                            <li><a href="customerSupport.html">Customer Help</a></li>
+                            <li><a href="aboutUs.html">About Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ownify. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

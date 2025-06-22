@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail - Ownify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="c.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Product Detail Main Section */
+        .product-detail-section {
+            background: white;
+            padding: 30px 0;
+            margin: 10px 0;
+        }
+
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 45% 55%;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* Product Images */
+        .product-images {
+            position: sticky;
+            top: 20px;
+        }
+
+        .main-image-container {
+            position: relative;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .main-image {
+            width: 100%;
+            height: 350px;
+            object-fit: contain;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            transition: transform 0.3s ease;
+        }
+
+        .main-image:hover {
+            transform: scale(1.05);
+        }
+
+        .zoom-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .zoom-icon:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .thumbnail {
+            flex-shrink: 0;
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: #007bff;
+            transform: scale(1.05);
+        }
+
+        /* Product Info */
+        .product-info {
+            padding: 20px 0;
+        }
+
+        .product-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .product-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stars {
+            color: #ffc107;
+        }
+
+        .rating-text {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .product-id {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .availability {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #28a745;
+            font-weight: 500;
+        }
+
+        .availability.out-of-stock {
+            color: #dc3545;
+        }
+
+        .price-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .current-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 5px;
+        }
+
+        .original-price {
+            font-size: 18px;
+            color: #999;
+            text-decoration: line-through;
+            margin-right: 15px;
+        }
+
+        .discount {
+            background: #dc3545;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .price-note {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,123,255,0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-secondary:hover {
+            background: #545b62;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #007bff;
+            color: #007bff;
+            flex: 1;
+        }
+
+        .btn-outline:hover {
+            background: #007bff;
+            color: white;
+        }
+
+        /* Contact Information */
+        .contact-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #e9ecef;
+        }
+
+        .contact-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .seller-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .seller-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .seller-details h4 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .seller-rating {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .contact-btn {
+            padding: 10px 20px;
+            border: 1px solid #007bff;
+            background: transparent;
+            color: #007bff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-btn:hover {
+            background: #007bff;
+            color: white;
+        }
+
+        /* Description Section */
+        .description-section {
+            background: white;
+            padding: 30px 0;
+            margin: 10px 0;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #007bff;
+            display: inline-block;
+        }
+
+        .description-content {
+            line-height: 1.8;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .description-content p {
+            margin-bottom: 15px;
+        }
+
+        .description-content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .description-content li {
+            margin-bottom: 8px;
+        }
+
+        /* Specifications */
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .specs-table th,
+        .specs-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .specs-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+            width: 30%;
+        }
+
+        .specs-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .product-detail-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .product-images {
+                position: static;
+            }
+
+            .main-image {
+                height: 300px;
+            }
+
+            .product-title {
+                font-size: 24px;
+            }
+
+            .current-price {
+                font-size: 28px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                flex: 1;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+
+            .product-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
+        /* Animation for loading */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* New CSS for location display */
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 14px;
+        }
+        .location i {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+ <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content container">
+            <div class="welcome-text">Welcome to Ownify Online marketplace platform.</div>
+            <div class="follow-links">
+                <span>Follow us</span>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+              
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content container">
+            <div class="logo">
+                <div class="logo-circle">
+                    <span class="logo-icon">O</span>
+                </div>
+                <span class="logo-text">Ownify</span>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for products...">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <div class="header-actions">
+                <div class="header-icons">
+                    <i class="fas fa-heart" onclick="window.location.href='wishlist.html'" style="cursor: pointer;"></i>
+                    <i class="fas fa-user" onclick="viewProfile()"></i>
+                </div>
+                <button onclick="window.location.href='signin.html'" class="login-btn">Log In</button>
+                <button onclick="window.location.href='signup.html'" class="signup-btn">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <!-- Navigation -->
+<nav class="nav-section">
+    <div class="header-bottom container">
+        <div class="nav-menu">
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    <i class="fas fa-bars"></i>
+                    All Category
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <div class="category-item">
+                        <a href="shop.html?category=computer-laptop" class="main-category">Computer & Laptop</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=car" class="main-category">Car</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=smartphone" class="main-category">SmartPhone</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=tv-appliances" class="main-category">TV & Homes Appliances</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=electronic-accessories" class="main-category">Electronic Accessories</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=house" class="main-category">House</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=land" class="main-category">Land</a>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="customerSupport.html" class="nav-item">
+                <i class="fas fa-headphones"></i>
+                Customer Support
+            </a>
+              
+            <a href="#" class="nav-item">
+                <i class="fas fa-question-circle"></i>
+                Need Help
+            </a>
+            
+            <div class="contact-info">
+                <i class="fas fa-phone"></i>
+                <span>+1 202 555 0106</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="#"><i class="fas fa-home"></i> Home</a>
+                <span class="breadcrumb-separator">></span>
+                <a href="#">Products</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Product Details </span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Product Detail Section -->
+    <section class="product-detail-section fade-in">
+        <div class="container">
+            <div class="product-detail-container">
+                <!-- Product Images -->
+                <div class="product-images">
+                    <div class="main-image-container">
+                        <img id="mainImage" src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=350&fit=crop" alt="Product Image" class="main-image">
+                        <button class="zoom-icon" onclick="openImageModal()">
+                            <i class="fas fa-search-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Information -->
+                <div class="product-info">
+                    <h1 class="product-title" id="productTitle"></h1>
+                    
+                    <div class="product-meta">
+                        <div class="product-id">ID: <span id="productId"></span></div>
+                        <div class="category">Category: <span id="productCategory"></span></div>
+                        <div class="condition">Condition: <span id="productCondition"></span></div>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="productLocation"></span>
+                        </div>
+                    </div>
+
+                    <div class="price-section">
+                        <div class="current-price" id="currentPrice"></div>
+                        <div>
+                            <span class="original-price" id="originalPrice"></span>
+                            <span class="discount" id="discount"></span>
+                        </div>
+                        <p class="price-note">Price includes VAT</p>
+                    </div>
+
+                    <div class="product-description">
+                        <h3>Description</h3>
+                        <div class="description-content" id="productDescription"></div>
+                    </div>
+
+                    <div class="product-details">
+                        <h3>Product Details</h3>
+                        <div class="details-content" id="productDetails">
+                            <div class="detail-row">
+                                <span class="detail-label">Brand:</span>
+                                <span class="detail-value" id="productBrand"></span>
+                            </div>
+                            <div id="additionalDetails"></div>
+                        </div>
+                    </div>
+
+                    <div class="seller-section">
+                        <h3>Seller Information</h3>
+                        <div class="seller-info">
+                            <div class="seller-details">
+                                <h4 id="sellerName"></h4>
+                                <p id="sellerLocation"></p>
+                                <p id="sellerJoinDate"></p>
+                                <div class="seller-rating">
+                                    <span id="sellerRating"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-buttons">
+                            <button class="contact-btn" onclick="messageSeller()">
+                                <i class="fas fa-envelope"></i>
+                                Message Seller
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-outline" onclick="addToWishlist()">
+                            <i class="fas fa-heart"></i>
+                            Save to Wishlist
+                        </button>
+                        <button class="btn btn-secondary" onclick="shareProduct()">
+                            <i class="fas fa-share-alt"></i>
+                            Share
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Description Section -->
+    <section class="description-section fade-in">
+        <div class="container">
+            <h2 class="section-title">Product Description</h2>
+            <div class="description-content" id="productDescription">
+                <!-- Description will be loaded dynamically -->
+            </div>
+
+            <h3 class="section-title" style="margin-top: 40px;">Technical Specifications</h3>
+            <table class="specs-table" id="productSpecs">
+                <!-- Specifications will be loaded dynamically -->
+            </table>
+        </div>
+    </section>
+ <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <div class="logo-circle">
+                            <span class="logo-icon">O</span>
+                        </div>
+                        <span class="logo-text">Ownify</span>
+                    </div>
+                    <div class="footer-contact">
+                        <p><strong>VISIT OUR STORE</strong></p>
+                        <p>2548 Brooke Street</p>
+                        <p>Colorado, New York 80202</p>
+                        <p><strong>+1 202 555 0106</strong></p>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>TOP CATEGORY</h4>
+                        <ul>
+                            <li><a href="#">Computer</a></li>
+                            <li><a href="#">Laptop</a></li>
+                            <li><a href="#">Camera</a></li>
+                            <li><a href="#">Car</a></li>
+                            <li><a href="#">Electronics</a></li>
+                            <li><a href="#">TV & Home Appliances</a></li>
+                        </ul>
+                        <a href="shopPage.html" class="browse-all">Browse all categories >></a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>QUICK LINKS</h4>
+                        <ul>
+                            <li><a href="shopPage.html">Shop</a></li>
+                            <li><a href="wishlist.html">Wishlist</a></li>
+                            <li><a href="customerSupport.html">Customer Help</a></li>
+                            <li><a href="aboutUs.html">About Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Copyright © Ownify Template All rights reserved. Developed by Templateseller.</p>
+            </div>
+        </div>
+    </footer> 
+
+
+    <script>
+
+//login yaptı mı 
+/*
+if (localStorage.getItem("isLoggedIn") !== "true") {
+  window.location.href = "signin.html";
+}*/
+
+
+        // Image gallery functionality
+        function changeImage(thumbnail) {
+            const mainImage = document.getElementById('mainImage');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            
+            // Remove active class from all thumbnails
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+            
+            // Add active class to clicked thumbnail
+            thumbnail.classList.add('active');
+            
+            // Update main image source
+            mainImage.src = thumbnail.src.replace('80x80', '600x350');
+        }
+
+        // Contact seller functionality
+        function contactSeller() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            
+            if (!productId) {
+                alert('Product ID not found');
+                return;
+            }
+
+            // You can implement the contact seller functionality here
+            alert('Contact seller feature will be implemented soon');
+        }
+
+        // Add to wishlist functionality
+        function addToWishlist() {
+            if (localStorage.getItem('isLoggedIn') !== 'true') {
+                alert('Please log in to add items to your wishlist');
+                window.location.href = 'signin.html';
+                return;
+            }
+
+            const productId = new URLSearchParams(window.location.search).get('id');
+            if (!productId) {
+                alert('Product not found');
+                return;
+            }
+
+            const btn = document.querySelector('.btn-outline');
+            const icon = btn.querySelector('i');
+
+            fetch('/wishlist/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: `productId=${productId}`,
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    icon.style.color = '#dc3545';
+                    btn.style.borderColor = '#dc3545';
+                    btn.style.color = '#dc3545';
+                    alert('Product added to wishlist!');
+                } else {
+                    alert(data.message || 'Failed to add product to wishlist');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error adding to wishlist');
+            });
+        }
+
+        // Share product functionality
+        function shareProduct() {
+            const productUrl = window.location.href;
+            const productTitle = document.querySelector('.product-title').textContent;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: productTitle,
+                    text: 'Check out this product on Ownify',
+                    url: productUrl
+                });
+            } else {
+                navigator.clipboard.writeText(productUrl).then(() => {
+                    alert('Product link copied to clipboard!');
+                }).catch(() => {
+                    alert('Failed to copy link');
+                });
+            }
+        }
+
+        // Call seller
+        function callSeller() {
+            const productId = new URLSearchParams(window.location.search).get('id');
+            fetch(`/api/products/${productId}/seller-phone`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.phone) {
+                    window.location.href = `tel:${data.phone}`;
+                } else {
+                    alert('Phone number not available');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to get seller phone number');
+            });
+        }
+
+        // Message seller
+        function messageSeller() {
+            const productId = new URLSearchParams(window.location.search).get('id');
+            // Doğrudan messaging.html'e yönlendir
+            window.location.href = `messaging.html?productId=${productId}`;
+        }
+
+        // View seller profile
+        function viewSellerProfile() {
+            const productId = new URLSearchParams(window.location.search).get('id');
+            fetch(`/api/products/${productId}/seller-id`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.sellerId) {
+                    window.location.href = `/seller/${data.sellerId}`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // Image modal for zoom
+        function openImageModal() {
+            // Bu fonksiyon image zoom modalını açacak
+            alert('Image zoom modal functionality - To be implemented');
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get product ID from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            
+            if (productId) {
+                loadProductData(productId);
+            } else {
+                document.querySelector('.product-detail-section').innerHTML = 
+                    '<div class="container"><div style="text-align:center; padding:50px;"><h2>Product not found</h2><p>Invalid product ID.</p></div></div>';
+            }
+        });
+
+        // Load product data from database
+        function loadProductData(productId) {
+            fetch(`/api/products/${productId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Product not found');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Product data:', data); // Debug log
+                    updateProductInfo(data);
+                })
+                .catch(error => {
+                    console.error('Error loading product:', error);
+                    document.querySelector('.product-detail-section').innerHTML = 
+                        '<div class="container"><div style="text-align:center; padding:50px;"><h2>Product not found</h2><p>The product you are looking for does not exist.</p></div></div>';
+                });
+        }
+
+        // Update product information on page
+        function updateProductInfo(productData) {
+            // Update main image
+            if (productData.imageUrl) {
+                document.getElementById('mainImage').src = productData.imageUrl;
+            }
+
+            // Basic product information
+            document.getElementById('productTitle').textContent = productData.title;
+            document.getElementById('productId').textContent = productData.id;
+            document.getElementById('currentPrice').textContent = `₺${parseFloat(productData.price).toLocaleString()}`;
+            
+            // Category
+            if (productData.category) {
+                document.getElementById('productCategory').textContent = productData.category.name;
+            }
+
+            // Condition
+            if (productData.condition) {
+                document.getElementById('productCondition').textContent = productData.condition;
+            }
+
+            // Location
+            if (productData.location) {
+                document.getElementById('productLocation').textContent = productData.location;
+            } else if (productData.city && productData.district) {
+                document.getElementById('productLocation').textContent = `${productData.district}, ${productData.city}`;
+            }
+
+            // Description
+            document.getElementById('productDescription').innerHTML = productData.description || 'No description available';
+            
+            // Product Details
+            if (productData.brand) {
+                document.getElementById('productBrand').textContent = productData.brand;
+            }
+
+            // Additional Details (dynamic fields from ad posting)
+            const additionalDetails = document.getElementById('additionalDetails');
+            additionalDetails.innerHTML = '';
+            
+            if (productData.specifications) {
+                Object.entries(productData.specifications).forEach(([key, value]) => {
+                    const detailRow = document.createElement('div');
+                    detailRow.className = 'detail-row';
+                    detailRow.innerHTML = `
+                        <span class="detail-label">${key}:</span>
+                        <span class="detail-value">${value}</span>
+                    `;
+                    additionalDetails.appendChild(detailRow);
+                });
+            }
+
+            // Seller Information
+            if (productData.seller) {
+                document.getElementById('sellerName').textContent = productData.seller.name;
+                if (productData.seller.location) {
+                    document.getElementById('sellerLocation').textContent = `Location: ${productData.seller.location}`;
+                }
+                if (productData.seller.joinDate) {
+                    document.getElementById('sellerJoinDate').textContent = `Member since: ${new Date(productData.seller.joinDate).toLocaleDateString()}`;
+                }
+                if (productData.seller.rating) {
+                    document.getElementById('sellerRating').innerHTML = `
+                        ${generateStars(productData.seller.rating)}
+                        <span class="rating-text">(${productData.seller.rating}/5 - ${productData.seller.reviewCount || 0} reviews)</span>
+                    `;
+                }
+            }
+
+            // Original price and discount if available
+            if (productData.originalPrice && productData.originalPrice > productData.price) {
+                document.getElementById('originalPrice').textContent = `₺${parseFloat(productData.originalPrice).toLocaleString()}`;
+                const discountPercent = Math.round(((productData.originalPrice - productData.price) / productData.originalPrice) * 100);
+                document.getElementById('discount').textContent = `${discountPercent}% OFF`;
+            } else {
+                document.getElementById('originalPrice').style.display = 'none';
+                document.getElementById('discount').style.display = 'none';
+            }
+        }
+
+        // Add this function at the beginning of your script
+        function goToWishlist() {
+            if (localStorage.getItem('isLoggedIn') !== 'true') {
+                alert('Please log in to view your wishlist');
+                window.location.href = 'signin.html';
+                return;
+            }
+            window.location.href = 'wishlist.html';
+        }
+
+        /* 
+        VERİTABANI ENTEGRASYONU İÇİN GEREKLİ ALANLAR:
+        
+        products tablosu:
+        - id, title, description, price, original_price, discount_percentage
+        - main_image, images (JSON), specifications (JSON)
+        - seller_id, category_id, stock_quantity, status
+        - created_at, updated_at
+        
+        sellers tablosu:
+        - id, name, avatar, phone, email, rating, review_count
+        - store_name, address, verified
+        
+        product_images tablosu:
+        - id, product_id, image_url, is_main, sort_order
+        
+        product_specifications tablosu:
+        - id, product_id, spec_name, spec_value
+        
+        PHP Backend fonksiyonları:
+        - getProductById($id)
+        - getProductImages($productId)
+        - getProductSpecifications($productId)
+        - getSellerInfo($sellerId)
+        - updateProductViews($productId)
+        */
+    </script>
+</body>
+</html>

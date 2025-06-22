@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Posting - Ownify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <link rel="stylesheet" href="c.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+
+
+
+
+
+        /* Ad Posting Section */
+        .ad-posting-section {
+            padding: 40px 0;
+            background: #f5f5f5;
+        }
+
+        .posting-container {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid #007bff;
+        }
+
+        .posting-content {
+            display: flex;
+            min-height: 500px;
+        }
+
+        .image-upload-section {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        .upload-area {
+            width: 200px;
+            height: 150px;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .upload-area:hover {
+            border-color: #007bff;
+            background: #f0f8ff;
+        }
+
+        .upload-icon {
+            font-size: 40px;
+            color: #ccc;
+        }
+
+        .upload-steps {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            right: 40px;
+        }
+
+        .step-indicators {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .step.active {
+            background: #007bff;
+            color: white;
+        }
+
+        .step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: calc(100% - 10px);
+            height: 2px;
+            background: #e0e0e0;
+            transform: translateY(-50%);
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .form-section {
+            flex: 1.2;
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #007bff;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .price-condition-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .price-condition-row .form-group {
+            flex: 1;
+        }
+
+        .contact-info-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .contact-info-box h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .contact-info-box p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn-post {
+            background: #030c5a;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-post:hover {
+            background: #0a0352;
+        }
+
+        .btn-edit {
+            background: #020a47;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-edit:hover {
+            background: #020335;
+        }
+
+        .btn-delete {
+            background: #020762;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-delete:hover {
+            background: #090942;
+        }
+
+
+
+        .browse-all {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .posting-content {
+                flex-direction: column;
+            }
+
+            .image-upload-section {
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .price-condition-row {
+                flex-direction: column;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+     <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content container">
+            <div class="welcome-text">Welcome to Ownify Online marketplace platform.</div>
+            <div class="follow-links">
+                <span>Follow us</span>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content container">
+            <div class="logo">
+                <div class="logo-circle">
+                    <span class="logo-icon">O</span>
+                </div>
+                <span class="logo-text">Ownify</span>
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for products...">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <script>
+                // Arama fonksiyonları
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('.search-input');
+    const searchBtn = document.querySelector('.search-btn');
+
+    // Arama butonuna tıklayınca
+    searchBtn.addEventListener('click', function() {
+        performSearch();
+    });
+
+    // Enter tuşuna basınca
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+
+    // Gerçek zamanlı arama (kullanıcı yazarken)
+    searchInput.addEventListener('input', function() {
+        // Biraz gecikme ile arama yap (kullanıcı yazmayı bitirsin diye)
+        clearTimeout(window.searchTimeout);
+        window.searchTimeout = setTimeout(performSearch, 300);
+    });
+
+    function performSearch() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const products = document.querySelectorAll('.product-item');
+        let foundCount = 0;
+
+        products.forEach(product => {
+            // Ürün başlığı, açıklama, fiyat vb. alanları kontrol et
+            const productTitle = product.querySelector('.product-title, .product-name, h3, h4')?.textContent?.toLowerCase() || '';
+            const productDescription = product.querySelector('.product-description, .product-desc, p')?.textContent?.toLowerCase() || '';
+            const productPrice = product.querySelector('.price, .product-price')?.textContent?.toLowerCase() || '';
+            const productCategory = product.getAttribute('data-category') || '';
+
+            // Tüm metin içeriğini birleştir
+            const allText = `${productTitle} ${productDescription} ${productPrice} ${productCategory}`.toLowerCase();
+
+            if (searchTerm === '' || allText.includes(searchTerm)) {
+                product.style.display = 'block';
+                foundCount++;
+            } else {
+                product.style.display = 'none';
+            }
+        });
+
+        // Sonuç sayısını göster
+        showSearchResults(searchTerm, foundCount);
+    }
+
+    function showSearchResults(searchTerm, count) {
+        // Varsa önceki sonuç mesajını kaldır
+        const existingResult = document.querySelector('.search-result-message');
+        if (existingResult) {
+            existingResult.remove();
+        }
+
+        if (searchTerm !== '') {
+            // Sonuç mesajı oluştur
+            const resultMessage = document.createElement('div');
+            resultMessage.className = 'search-result-message';
+            resultMessage.style.cssText = `
+                padding: 15px;
+                margin: 20px 0;
+                background: #f8f9fa;
+                border-left: 4px solid #007bff;
+                border-radius: 4px;
+            `;
+
+            if (count > 0) {
+                resultMessage.innerHTML = `
+                    <strong>${count}</strong> product${count !== 1 ? 's' : ''} found for "<strong>${searchTerm}</strong>"
+                    <button onclick="clearSearch()" style="float: right; background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Clear</button>
+                `;
+            } else {
+                resultMessage.innerHTML = `
+                    No products found for "<strong>${searchTerm}</strong>"
+                    <button onclick="clearSearch()" style="float: right; background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Clear</button>
+                `;
+            }
+
+            // Ürün listesinin üstüne ekle
+            const productContainer = document.querySelector('.products-container, .product-grid, .products-grid, main');
+            if (productContainer) {
+                productContainer.insertBefore(resultMessage, productContainer.firstChild);
+            }
+        }
+    }
+
+    // Global fonksiyon - Clear butonuna tıklayınca
+    window.clearSearch = function() {
+        searchInput.value = '';
+        performSearch(); // Tüm ürünleri göster
+    }
+});
+
+// CSS stilleri dinamik olarak ekle
+const searchStyles = `
+    .search-result-message {
+        animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .product-item {
+        transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+`;
+
+// Stilleri head'e ekle
+const styleSheet = document.createElement('style');
+styleSheet.textContent = searchStyles;
+document.head.appendChild(styleSheet);
+            </script>
+
+
+
+           <div class="header-actions">
+                <div class="header-icons">
+                    <a href="messaging.html" style="text-decoration: none; color: inherit;"> <i class="fas fa-comment-alt"></i> </a>
+                    <a href="wishlist.html" style="text-decoration: none; color: inherit;"> <i class="fas fa-heart"></i> </a>
+                    <a href="dashboard.html" style="text-decoration: none; color: inherit;"> <i class="fas fa-user"></i> </a>
+                </div>
+               <button onclick="window.location.href='signin.html'" class="login-btn">Log In</button>
+<button onclick="window.location.href='signup.html'" class="signup-btn">Sign Up</button>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <!-- Navigation -->
+<nav class="nav-section">
+    <div class="header-bottom container">
+        <div class="nav-menu">
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    <i class="fas fa-bars"></i>
+                    All Category
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <div class="category-item">
+                        <a href="shop.html?category=computer-laptop" class="main-category">Computer & Laptop</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=car" class="main-category">Car</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=smartphone" class="main-category">SmartPhone</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=tv-appliances" class="main-category">TV & Homes Appliances</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=electronic-accessories" class="main-category">Electronic Accessories</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=house" class="main-category">House</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=land" class="main-category">Land</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="customerSupport.html" class="nav-item">
+                <i class="fas fa-headphones"></i>
+                Customer Support
+            </a>
+
+            <a href="#" class="nav-item">
+                <i class="fas fa-question-circle"></i>
+                Need Help
+            </a>
+
+            <div class="contact-info">
+                <i class="fas fa-phone"></i>
+                <span>+1 202 555 0106</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="#"><i class="fas fa-home"></i> Home</a>
+                <span class="breadcrumb-separator">></span>
+                <a href="#">Products</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Ad Posting</span>
+            </div>
+        </div>
+    </div>
+
+   <!-- Ad Posting Section -->
+<section class="ad-posting-section">
+    <div class="container">
+        <div class="posting-container">
+            <div class="posting-content">
+                <!-- Left Side - Image Upload -->
+                <div class="image-upload-section">
+                    <div class="upload-area" onclick="triggerFileUpload()">
+                        <i class="fas fa-image upload-icon"></i>
+                    </div>
+                    <input type="file" id="imageUpload" style="display: none;" multiple accept="image/*" onchange="handleImageUpload(event)">
+
+                    <div class="upload-steps">
+                        <div class="step-indicators">
+                            <div class="step active">1</div>
+                            <div class="step">2</div>
+                            <div class="step">3</div>
+                            <div class="step">4</div>
+                            <div class="step">5</div>
+                            <div class="step">6</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side - Form -->
+                <div class="form-section">
+                    <form id="adPostingForm">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" id="title" name="title" placeholder="Enter product title">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" name="categoryId">
+                                <option value="">Select Category</option>
+                                <option value="1">Computer & Laptop</option>
+                                <option value="2">Car</option>
+                                <option value="3">SmartPhone</option>
+                                <option value="4">TV & Home Appliances</option>
+                                <option value="5">Electronic Accessories</option>
+                                <option value="6">House</option>
+                                <option value="7">Land</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" placeholder="Describe your product in detail..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="brand">Brand</label>
+                            <input type="text" id="brand" name="brand" placeholder="Enter product brand">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" name="location" placeholder="Enter product location">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" id="price" name="price" placeholder="0.00">
+                        </div>
+
+                        <div class="contact-info-box">
+                            <h4>Contact Information</h4>
+                            <p><strong>Mehdi</strong></p>
+                            <p>Email: mehdi@example.com</p>
+                            <p>Phone: +1 (555) 123-4567</p>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button type="submit" class="btn btn-post">Post</button>
+                            <button type="button" class="btn btn-edit">Edit</button>
+                            <button type="button" class="btn btn-delete">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+     <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <div class="logo-circle">
+                            <span class="logo-icon">O</span>
+                        </div>
+                        <span class="logo-text">Ownify</span>
+                    </div>
+                    <div class="footer-contact">
+                        <p><strong>VISIT OUR STORE</strong></p>
+                        <p>2548 Brooke Street</p>
+                        <p>Colorado, New York 80202</p>
+                        <p><strong>+1 202 555 0106</strong></p>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>TOP CATEGORY</h4>
+                        <ul>
+                            <li><a href="#">Computer</a></li>
+                            <li><a href="#">Laptop</a></li>
+                            <li><a href="#">Camera</a></li>
+                            <li><a href="#">Car</a></li>
+                            <li><a href="#">Electronics</a></li>
+                            <li><a href="#">TV & Home Appliances</a></li>
+                        </ul>
+                        <a href="shopPage.html" class="browse-all">Browse all categories >></a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>QUICK LINKS</h4>
+                        <ul>
+                            <li><a href="shopPage.html">Shop</a></li>
+                            <li><a href="wishlist.html">Wishlist</a></li>
+                            <li><a href="customerSupport.html">Customer Help</a></li>
+                            <li><a href="aboutUs.html">About Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>Copyright © Ownify Template All rights reserved. Developed by Templateseller.</p>
+            </div>
+        </div>
+    </footer> 
+
+
+
+    <script>
+
+window.onload = function() {
+    if (localStorage.getItem('isLoggedIn') !== 'true') {
+      window.location.href = 'signin.html';
+    }
+  };
+
+
+        function triggerFileUpload() {
+            document.getElementById('imageUpload').click();
+        }
+
+        function handleImageUpload(event) {
+            const files = event.target.files;
+            const uploadArea = document.querySelector('.upload-area');
+
+            if (files.length > 0) {
+                // Validate file types
+                for (let i = 0; i < files.length; i++) {
+                    if (!files[i].type.startsWith('image/')) {
+                        alert('Please select only image files');
+                        event.target.value = ''; // Clear the file input
+                        return;
+                    }
+                }
+
+                // Show loading state
+                uploadArea.innerHTML = `
+                    <div style="text-align: center;">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p style="margin-top: 10px;">Uploading ${files.length} file(s)...</p>
+                    </div>
+                `;
+
+                // Create preview for the first image
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadArea.innerHTML = `
+                        <div style="text-align: center;">
+                            <img src="${e.target.result}" style="max-width: 100%; max-height: 120px; margin-bottom: 10px; border-radius: 5px;">
+                            <p style="color: #28a745; font-weight: bold;">${files.length} file(s) selected</p>
+                        </div>
+                    `;
+                };
+                reader.readAsDataURL(files[0]);
+
+                // Update step indicators
+                updateStepIndicators(2);
+            }
+        }
+
+        function updateStepIndicators(activeStep) {
+            const steps = document.querySelectorAll('.step');
+            steps.forEach((step, index) => {
+                if (index < activeStep) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+        }
+
+        function toggleWishlist() {
+            alert('Wishlist functionality');
+        }
+
+        function viewProfile() {
+            alert('Profile functionality');
+        }
+
+        // Form validation and submission
+        document.getElementById('adPostingForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const category = document.getElementById('category').value;
+            const description = document.getElementById('description').value;
+            const price = document.getElementById('price').value;
+            const imageFiles = document.getElementById('imageUpload').files;
+
+            if (!title || !category || !price) {
+                alert('Please fill in all required fields (Title, Category, Price)');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = document.querySelector('.btn-post');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'Posting...';
+            submitBtn.disabled = true;
+
+            try {
+                let imageUrls = [];
+
+                // Only upload images if files are selected
+                if (imageFiles.length > 0) {
+                    // Upload images
+                    const formData = new FormData();
+                    for (let i = 0; i < imageFiles.length; i++) {
+                        formData.append('images', imageFiles[i]);
+                    }
+
+                    const imageUploadResponse = await fetch('/api/upload-images', {
+                        method: 'POST',
+                        body: formData,
+                        credentials: 'include'
+                    });
+
+                    const imageUploadResult = await imageUploadResponse.json();
+
+                    if (!imageUploadResponse.ok) {
+                        throw new Error(imageUploadResult.error || 'Failed to upload images');
+                    }
+
+                    if (!imageUploadResult.success) {
+                        throw new Error(imageUploadResult.error || 'Failed to upload images');
+                    }
+
+                    imageUrls = imageUploadResult.imageUrls;
+                }
+
+                // Prepare product data
+                const productData = {
+                    title: title,
+                    description: description,
+                    categoryId: category,
+                    price: price,
+                    brand: document.getElementById('brand').value,
+                    location: document.getElementById('location').value,
+                    imageUrls: imageUrls
+                };
+
+                // Send product data to API
+                const productResponse = await fetch('/api/products', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify(productData),
+                    credentials: 'include'
+                });
+
+                const productResult = await productResponse.json();
+
+                if (!productResponse.ok) {
+                    if (productResponse.status === 401) {
+                        throw new Error('User not logged in. Please log in and try again.');
+                    }
+                    throw new Error(productResult.error || `HTTP error ${productResponse.status}`);
+                }
+
+                if (!productResult.success) {
+                    throw new Error(productResult.error || 'Failed to create product');
+                }
+
+                alert('Ad posted successfully!');
+                updateStepIndicators(6);
+
+                // Redirect to shop page after a short delay
+                setTimeout(() => {
+                    window.location.href = 'shopPage.html';
+                }, 1500);
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error: ' + error.message);
+                if (error.message === 'User not logged in. Please log in and try again.') {
+                    localStorage.removeItem('isLoggedIn');
+                    window.location.href = 'signin.html';
+                }
+            } finally {
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Form field change handlers
+        document.getElementById('title').addEventListener('input', function() {
+            if (this.value.trim()) updateStepIndicators(3);
+        });
+
+        document.getElementById('category').addEventListener('change', function() {
+            if (this.value) updateStepIndicators(4);
+        });
+
+        document.getElementById('price').addEventListener('input', function() {
+            if (this.value) updateStepIndicators(5);
+        });
+    </script>
+</body>
+</html>

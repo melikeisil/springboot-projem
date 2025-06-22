@@ -1,0 +1,1252 @@
+/* Reset ve Genel Stiller */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Top Bar */
+.top-bar {
+    background-color: #2c3e50;
+    color: white;
+    padding: 8px 0;
+    font-size: 12px;
+}
+
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.welcome-text {
+    opacity: 0.8;
+}
+
+.follow-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.follow-links span {
+    opacity: 0.8;
+    margin-right: 5px;
+}
+
+.follow-links a {
+    color: white;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.follow-links a:hover {
+    color: #ff6b35;
+}
+
+/* Header Stili */
+.header {
+    background-color: #1a2332;
+    color: white;
+    padding: 15px 0;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.logo-icon {
+    color: #1a2332;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.logo-text {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.search-container {
+    flex: 1;
+    max-width: 400px;
+    margin: 0 40px;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 50px 12px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    outline: none;
+}
+
+.search-btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    color: #666;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-icons {
+    display: flex;
+    gap: 15px;
+    font-size: 18px;
+}
+
+.header-icons i {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.header-icons i:hover {
+    color: #ff6b35;
+}
+
+.login-btn, .signup-btn {
+    padding: 8px 20px;
+    border: 1px solid #fff;
+    background: #fff;
+    color: #1a2332;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.login-btn:hover, .signup-btn:hover {
+    background-color: transparent;
+    color: #fff;
+}
+
+/* Navigation Section - Beyaz Arka Plan */
+.nav-section {
+    background-color: #fff;
+    border-top: 3px solid #1a2332;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-bottom {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* Dropdown Stili - Son tanımlama geçerli */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-btn {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    padding: 12px 25px;
+    border-radius: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    min-width: 160px;
+    transition: all 0.3s;
+}
+
+.dropdown-btn:hover {
+    background-color: #ff6b35;
+    color: white;
+    border-color: #ff6b35;
+}
+
+.dropdown-btn:hover i.fas.fa-bars,
+.dropdown-btn:hover i.fas.fa-chevron-down {
+    color: white;
+}
+
+.dropdown-btn i.fas.fa-bars {
+    color: #ff6b35;
+    transition: color 0.3s;
+}
+
+.dropdown-btn i.fas.fa-chevron-down {
+    color: #333;
+    margin-left: auto;
+    transition: color 0.3s;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 250px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+    border-radius: 0 0 8px 8px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Category Item Container */
+.category-item {
+    position: relative;
+}
+
+.main-category {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s;
+    font-weight: 500;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.main-category:hover {
+    background-color: #f1f1f1;
+    color: #ff6b35;
+    padding-left: 20px;
+}
+
+/* Subcategory Content */
+.subcategory-content {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    border-radius: 0 8px 8px 0;
+    z-index: 1001;
+}
+
+.category-item:hover .subcategory-content {
+    display: block;
+}
+
+.subcategory {
+    color: #666;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s;
+    font-size: 13px;
+    border-bottom: 1px solid #f8f8f8;
+}
+
+.subcategory:hover {
+    background-color: #ff6b35;
+    color: white;
+    padding-left: 20px;
+}
+
+.nav-item {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 25px;
+}
+
+.nav-item:hover {
+    color: #359aff;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #666;
+    padding: 15px 25px;
+    margin-left: auto;
+}
+
+/* Breadcrumb Section */
+.breadcrumb-section {
+    background-color: #f8f9fa;
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.breadcrumb a {
+    color: #666;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s;
+}
+
+.breadcrumb a:hover {
+    color: #ff6b35;
+}
+
+.breadcrumb-separator {
+    color: #999;
+    font-size: 12px;
+}
+
+.breadcrumb-current {
+    color: #ff6b35;
+    font-weight: 500;
+}
+
+/* Ana İçerik */
+.main-content {
+    padding: 40px 0;
+}
+
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 300px 1fr 300px;
+    gap: 30px;
+    align-items: start;
+}
+
+/* Hero Section */
+.hero-section {
+    background-color: #1a2332;
+    border-radius: 20px;
+    padding: 80px 60px;
+    text-align: left;
+    color: white;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero-title em {
+    font-style: italic;
+    font-weight: 400;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    opacity: 0.8;
+    margin-top: 20px;
+}
+
+/* Sign In Section */
+.signin-section {
+    padding: 60px 0;
+    background-color: #fff;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.signin-wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Sign In Tabs */
+.signin-tabs {
+    display: flex;
+    background-color: #f8f9fa;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 20px;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn.active {
+    background-color: #fff;
+    color: #1a2332;
+    border-bottom-color: #3575ff;
+}
+
+.tab-btn:hover {
+    color: #3572ff;
+}
+
+/* Sign In Form */
+.signin-form {
+    padding: 40px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s;
+    background-color: #f8f9fa;
+}
+
+.form-input:focus {
+    border-color: #ff6b35;
+    background-color: #fff;
+}
+
+.form-input::placeholder {
+    color: #999;
+}
+
+/* Password Container */
+.password-container {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.password-toggle:hover {
+    color: #ff6b35;
+}
+
+.forgot-password {
+    color: #74b9ff;
+    text-decoration: none;
+    font-size: 14px;
+    float: right;
+    transition: opacity 0.3s;
+}
+
+.forgot-password:hover {
+    opacity: 0.8;
+}
+
+/* Sign In Button */
+.signin-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #1a2332;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s;
+    margin-bottom: 30px;
+}
+
+.signin-btn:hover {
+    background-color: #2c3e50;
+    transform: translateY(-2px);
+}
+
+.signin-btn i {
+    font-size: 14px;
+}
+
+/* Social Sign In */
+.social-signin {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.social-btn {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    background-color: #fff;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+.google-btn {
+    color: #333;
+}
+
+.google-btn:hover {
+    border-color: #db4437;
+    background-color: #db4437;
+    color: white;
+}
+
+.apple-btn {
+    color: #333;
+}
+
+.apple-btn:hover {
+    border-color: #000;
+    background-color: #000;
+    color: white;
+}
+
+.social-btn i {
+    font-size: 18px;
+}
+
+/* Reklam Kartları */
+.ad-card {
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.yellow-card {
+    background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+    color: #333;
+}
+
+.blue-card {
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
+    color: white;
+}
+
+.orange-card {
+    background: linear-gradient(135deg, #ff6b35, #ff8f65);
+    color: white;
+    position: relative;
+}
+
+.dark-card {
+    background: linear-gradient(135deg, #2d3436, #636e72);
+    color: white;
+}
+
+/* Sol Sidebar Ürün Kartı */
+.product-image {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.product-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.product-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.product-subtitle {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-bottom: 15px;
+}
+
+.price-info {
+    margin-bottom: 20px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    opacity: 0.6;
+    margin-right: 10px;
+}
+
+.new-price {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.shop-btn {
+    background-color: #ff6b35;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+.shop-btn:hover {
+    background-color: #e55a2b;
+    transform: translateY(-2px);
+}
+
+/* İndirim Kartı */
+.discount-badge {
+    text-align: center;
+}
+
+.discount-text {
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.discount-subtitle {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 20px;
+}
+
+/* Sağ Sidebar */
+.summer-badge {
+    background-color: rgba(255,255,255,0.2);
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 12px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.discount-large {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product-title-small {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.shop-btn-small {
+    background-color: #fff;
+    color: #ff6b35;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.product-image-small {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.product-img-small {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* Sağ Alt Kart */
+.product-image-right {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.product-img-right {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.product-title-right {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.rating {
+    margin-bottom: 15px;
+}
+
+.stars {
+    color: #ffd700;
+    margin-bottom: 5px;
+}
+
+.rating-text {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.shop-btn-right {
+    background-color: #358dff;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Footer */
+.footer {
+    background-color: #1a2332;
+    color: white;
+    padding: 40px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.footer-logo .logo-circle {
+    width: 35px;
+    height: 35px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-logo .logo-icon {
+    color: #1a2332;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.footer-contact p {
+    margin-bottom: 5px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-column h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #35aeff;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.footer-column ul li a:hover {
+    opacity: 1;
+    color: #357fff;
+}
+
+.browse-all {
+    color: #357fff;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #2a3441;
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .top-bar-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-section {
+        padding: 40px 30px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .search-container {
+        margin: 0;
+        max-width: 100%;
+    }
+    
+    .nav-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .dropdown-btn {
+        width: 100%;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .footer-links {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    /* Mobile için subcategory düzenlemesi */
+    .subcategory-content {
+        position: static;
+        display: none;
+        box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+        background-color: #f8f9fa;
+    }
+    
+    .category-item:hover .subcategory-content {
+        display: block;
+    }
+    
+    /* Sign In Responsive */
+    .signin-section {
+        padding: 40px 0;
+    }
+    
+    .signin-wrapper {
+        margin: 0 20px;
+        max-width: none;
+    }
+    
+    .signin-form {
+        padding: 30px 25px;
+    }
+    
+    .tab-btn {
+        padding: 15px;
+        font-size: 14px;
+    }
+    
+    .breadcrumb-section {
+        padding: 10px 0;
+    }
+    
+    .breadcrumb {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .ad-card {
+        padding: 20px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    /* Sign In Mobile */
+    .signin-form {
+        padding: 25px 20px;
+    }
+    
+    .form-input {
+        padding: 12px 15px;
+    }
+    
+    .signin-btn {
+        padding: 12px;
+    }
+    
+    .social-btn {
+        padding: 10px;
+        font-size: 13px;
+    }
+}
+
+/* Social Sign In Button Düzenlemeleri */
+.social-btn {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    background-color: #fff;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+.google-btn {
+    color: #333;
+    border-color: #dadce0;
+}
+
+.google-btn:hover {
+    border-color: #dadce0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.google-btn i {
+    color: #4285f4;
+    font-size: 18px;
+}
+
+.apple-btn {
+    color: #333;
+    border-color: #dadce0;
+}
+
+.apple-btn:hover {
+    border-color: #dadce0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.apple-btn i {
+    color: #000;
+    font-size: 20px;
+}
+
+/* Mobile için düzenleme */
+@media (max-width: 480px) {
+    .social-btn {
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    .google-btn i,
+    .apple-btn i {
+        font-size: 16px;
+    }
+}
+/* Social Sign In Button Düzenlemeleri */
+/*
+.social-btn {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    background-color: #fff;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+.google-btn {
+    color: #333;
+    border-color: #dadce0;
+    position: relative;
+}
+
+.google-btn:hover {
+    border-color: #dadce0;
+    background-color: #f8f9fa;
+    color: #333;
+}*/
+
+/* Google Logo gerçek renklerle - Daha basit çözüm */
+.google-btn i.fab.fa-google {
+    font-size: 18px;
+    background: conic-gradient(from -45deg, #357dea 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Fallback için normal renkli Google ikonu */
+@supports not (background-clip: text) {
+    .google-btn i.fab.fa-google {
+        color: #4285f4;
+        background: none;
+        -webkit-text-fill-color: unset;
+    }
+}
+
+.apple-btn {
+    color: #333;
+    border-color: #dadce0;
+}
+
+.apple-btn:hover {
+    border-color: #dadce0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Customer Support için kulaklık ikonu - daha basit çözüm */
+.nav-item:has(.fa-life-ring) .fa-life-ring::before {
+    content: '\1f3a7'; /* 🎧 */
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+}
+
+/* Alternatif - FontAwesome kulaklık ikonu kullan */
+.nav-item .fa-life-ring {
+    display: none;
+}
+
+.nav-item:has(.fa-life-ring)::before {
+    font-family: 'Font Awesome 6 Free';
+    content: '\f025'; /* kulaklık ikonu */
+    font-weight: 900;
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+/* Mobile için düzenleme */
+@media (max-width: 480px) {
+    .social-btn {
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    .google-btn i,
+    .apple-btn i {
+        font-size: 16px;
+    }
+}
+/* Sign Up sayfası için ek CSS kodları - mevcut CSS dosyanızın sonuna ekleyin */
+
+/* Sign Up Form için özel düzenlemeler */
+.signin-form form {
+    margin-bottom: 30px;
+}
+
+/* Confirm Password için ek stil - gerekirse */
+#confirm-password-icon {
+    color: #999;
+    transition: color 0.3s;
+}
+
+#confirm-password-icon:hover {
+    color: #35bcff;
+}
+
+/* Tab butonları için aktif durumu düzenlemesi */
+.tab-btn.active {
+    background-color: #fff;
+    color: #1a2332;
+    border-bottom-color: #35a1ff;
+    font-weight: 600;
+}
+
+/* Form validation stilleri (opsiyonel) */
+.form-input:invalid {
+    border-color: #567de7;
+}
+
+.form-input:valid {
+    border-color: #27ae60;
+}
+
+/* Sign Up buton hover efekti */
+.signin-btn:hover {
+    background-color: #2c3e50;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(26, 35, 50, 0.3);
+}
+
+/* Social butonlar için ek hover efektleri */
+.google-btn:hover,
+.apple-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 768px) {
+    .signin-tabs {
+        border-radius: 15px 15px 0 0;
+    }
+    
+    .tab-btn {
+        font-size: 15px;
+        padding: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .signin-wrapper {
+        border-radius: 15px;
+        margin: 0 10px;
+    }
+    
+    .signin-form {
+        padding: 20px 15px;
+    }
+    
+    .form-input {
+        font-size: 16px; /* iOS zoom önleme */
+    }
+}
+
+.social-signin {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+/* Sign Up sayfası için ek CSS - mevcut CSS dosyanızın sonuna ekleyin */
+
+/* Tab content gösterme/gizleme */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Sign In tab için gizleme */
+.signin-content {
+    display: none;
+}
+
+/* Sign Up tab aktif olduğunda Sign In'i gizle */
+.signin-content.active {
+    display: block;
+}

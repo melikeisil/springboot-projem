@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Ownify</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Ana CSS dosyanızı buraya bağlayın -->
+    <link rel="stylesheet" href="c.css">
+    <style>
+        
+/* Chat Container */
+        .chat-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8B4513, #A0522D);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .username {
+            font-weight: 600;
+            color: #2c4456;
+        }
+
+        .menu-dots {
+            font-size: 20px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .date-divider {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* Messages */
+        .messages {
+            padding: 20px;
+            min-height: 400px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .message.right {
+            flex-direction: row-reverse;
+            justify-content: flex-start;
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8B4513, #A0522D);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .message-content {
+            max-width: 70%;
+        }
+
+        .message-bubble {
+            padding: 12px 16px;
+            border-radius: 18px;
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .message.right .message-bubble {
+            background-color: #2c4456;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message:not(.right) .message-bubble {
+            background-color: #f1f3f4;
+            color: #333;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: #999;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .message.right .message-time {
+            justify-content: flex-end;
+        }
+
+        .checkmark {
+            color: #4CAF50;
+            font-size: 12px;
+        }
+
+        .user-avatar-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #e3f2fd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1976d2;
+            font-size: 16px;
+        }
+
+        /* Message Input */
+        .message-input-container {
+            padding: 20px;
+            border-top: 1px solid #e9ecef;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .send-btn {
+            background: none;
+            border: none;
+            color: #2c4456;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content container">
+            <div class="welcome-text">Welcome to Ownify Online marketplace platform.</div>
+            <div class="follow-links">
+                <span>Follow us</span>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+              
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content container">
+            <div class="logo">
+                <div class="logo-circle">
+                    <span class="logo-icon">O</span>
+                </div>
+                <span class="logo-text">Ownify</span>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for products...">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <div class="header-actions">
+                <div class="header-icons">
+                    <a href="messaging.html" style="text-decoration: none; color: inherit;"> <i class="fas fa-comment-alt"></i> </a>
+                    <a href="wishlist.html" style="text-decoration: none; color: inherit;"> <i class="fas fa-heart"></i> </a>
+                    <a href="dashboard.html" style="text-decoration: none; color: inherit;"> <i class="fas fa-user"></i> </a>
+                </div>
+                <button class="login-btn">
+                    <a href="signin.html" style="text-decoration: none; color: inherit;">Log In</a>
+                </button>
+                <button class="signup-btn">
+                    <a href="signup.html" style="text-decoration: none; color: inherit;">Sign Up</a>
+                </button>
+            </div>
+        </div>
+    </header>
+
+   <!-- Navigation -->
+<nav class="nav-section">
+    <div class="header-bottom container">
+        <div class="nav-menu">
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    <i class="fas fa-bars"></i>
+                    All Category
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <div class="category-item">
+                        <a href="shop.html?category=computer-laptop" class="main-category">Computer & Laptop</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=car" class="main-category">Car</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=smartphone" class="main-category">SmartPhone</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=tv-appliances" class="main-category">TV & Homes Appliances</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=electronic-accessories" class="main-category">Electronic Accessories</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=house" class="main-category">House</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=land" class="main-category">Land</a>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="customerSupport.html" class="nav-item">
+                <i class="fas fa-headphones"></i>
+                Customer Support
+            </a>
+              
+            <a href="#" class="nav-item">
+                <i class="fas fa-question-circle"></i>
+                Need Help
+            </a>
+            
+            <div class="contact-info">
+                <i class="fas fa-phone"></i>
+                <span>+1 202 555 0106</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="#"><i class="fas fa-home"></i> Home</a>
+                <span class="breadcrumb-separator">></span>
+                <a href="shopPage.html">Products</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Messaging</span>
+            </div>
+        </div>
+    </div>
+
+<!-- Chat Container -->
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="user-info">
+                <div class="avatar-container">
+                    <div class="avatar">S</div>
+                    <div class="green-dot"></div>
+                </div>
+                <span class="username">Salesman</span>
+            </div>
+            <div class="menu-dots">⋯</div>
+        </div>
+
+        <div class="date-divider">Today</div>
+
+        <div class="messages" id="messagesContainer">
+        </div>
+
+        <div class="message-input-container">
+            <input type="text" class="message-input" placeholder="Start typing..." id="messageInput">
+            <button class="send-btn" onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+
+
+    
+
+
+
+
+
+
+      <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <div class="logo-circle">
+                            <span class="logo-icon">O</span>
+                        </div>
+                        <span class="logo-text">Ownify</span>
+                    </div>
+                    <div class="footer-contact">
+                        <p><strong>VISIT OUR STORE</strong></p>
+                        <p>2548 Brooke Street</p>
+                        <p>Colorado, New York 80202</p>
+                        <p><strong>+1 202 555 0106</strong></p>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>TOP CATEGORY</h4>
+                        <ul>
+                            <li><a href="#">Computer</a></li>
+                            <li><a href="#">Laptop</a></li>
+                            <li><a href="#">Camera</a></li>
+                            <li><a href="#">Car</a></li>
+                            <li><a href="#">Electronics</a></li>
+                            <li><a href="#">TV & Home Appliances</a></li>
+                        </ul>
+                        <a href="#" class="browse-all">Browse all categories >></a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>QUICK LINKS</h4>
+                        <ul>
+                            <li><a href="shopPage.html">Shop</a></li>
+                           
+                            <li><a href="wishlist.html">Wishlist</a></li>
+                          
+                            <li><a href="customerSupport.html">Customer Help</a></li>
+                            <li><a href="aboutUs.html">About Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Copyright © Ownify Template All rights reserved. Developed by Templateseller.</p>
+            </div>
+        </div>
+    </footer> 
+<script>
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                const messagesContainer = document.getElementById('messagesContainer');
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('en-US', { 
+                    hour: 'numeric', 
+                    minute: '2-digit',
+                    hour12: true 
+                });
+
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message right';
+                messageElement.innerHTML = `
+                    <div class="user-avatar-icon">👤</div>
+                    <div class="message-content">
+                        <div class="message-bubble">${message}</div>
+                        <div class="message-time">${timeString} ✓✓</div>
+                    </div>
+                `;
+
+                messagesContainer.appendChild(messageElement);
+                input.value = '';
+                
+                // Scroll to bottom
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        }
+
+        // Send message on Enter key press
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Auto-scroll to bottom on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const messagesContainer = document.getElementById('messagesContainer');
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        });
+// Arama fonksiyonları
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('.search-input');
+    const searchBtn = document.querySelector('.search-btn');
+    
+    // Arama butonuna tıklayınca
+    searchBtn.addEventListener('click', function() {
+        performSearch();
+    });
+    
+    // Enter tuşuna basınca
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+    
+    // Gerçek zamanlı arama (kullanıcı yazarken)
+    searchInput.addEventListener('input', function() {
+        // Biraz gecikme ile arama yap (kullanıcı yazmayı bitirsin diye)
+        clearTimeout(window.searchTimeout);
+        window.searchTimeout = setTimeout(performSearch, 300);
+    });
+    
+    function performSearch() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const products = document.querySelectorAll('.product-item');
+        let foundCount = 0;
+        
+        products.forEach(product => {
+            // Ürün başlığı, açıklama, fiyat vb. alanları kontrol et
+            const productTitle = product.querySelector('.product-title, .product-name, h3, h4')?.textContent?.toLowerCase() || '';
+            const productDescription = product.querySelector('.product-description, .product-desc, p')?.textContent?.toLowerCase() || '';
+            const productPrice = product.querySelector('.price, .product-price')?.textContent?.toLowerCase() || '';
+            const productCategory = product.getAttribute('data-category') || '';
+            
+            // Tüm metin içeriğini birleştir
+            const allText = `${productTitle} ${productDescription} ${productPrice} ${productCategory}`.toLowerCase();
+            
+            if (searchTerm === '' || allText.includes(searchTerm)) {
+                product.style.display = 'block';
+                foundCount++;
+            } else {
+                product.style.display = 'none';
+            }
+        });
+        
+        // Sonuç sayısını göster
+        showSearchResults(searchTerm, foundCount);
+    }
+    
+    function showSearchResults(searchTerm, count) {
+        // Varsa önceki sonuç mesajını kaldır
+        const existingResult = document.querySelector('.search-result-message');
+        if (existingResult) {
+            existingResult.remove();
+        }
+        
+        if (searchTerm !== '') {
+            // Sonuç mesajı oluştur
+            const resultMessage = document.createElement('div');
+            resultMessage.className = 'search-result-message';
+            resultMessage.style.cssText = `
+                padding: 15px;
+                margin: 20px 0;
+                background: #f8f9fa;
+                border-left: 4px solid #007bff;
+                border-radius: 4px;
+            `;
+            
+            if (count > 0) {
+                resultMessage.innerHTML = `
+                    <strong>${count}</strong> product${count !== 1 ? 's' : ''} found for "<strong>${searchTerm}</strong>"
+                    <button onclick="clearSearch()" style="float: right; background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Clear</button>
+                `;
+            } else {
+                resultMessage.innerHTML = `
+                    No products found for "<strong>${searchTerm}</strong>"
+                    <button onclick="clearSearch()" style="float: right; background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Clear</button>
+                `;
+            }
+            
+            // Ürün listesinin üstüne ekle
+            const productContainer = document.querySelector('.products-container, .product-grid, .products-grid, main');
+            if (productContainer) {
+                productContainer.insertBefore(resultMessage, productContainer.firstChild);
+            }
+        }
+    }
+    
+    // Global fonksiyon - Clear butonuna tıklayınca
+    window.clearSearch = function() {
+        searchInput.value = '';
+        performSearch(); // Tüm ürünleri göster
+    }
+});
+
+// CSS stilleri dinamik olarak ekle
+const searchStyles = `
+    .search-result-message {
+        animation: fadeIn 0.3s ease-in;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .product-item {
+        transition: all 0.3s ease;
+    }
+    
+    .search-input:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+`;
+
+// Stilleri head'e ekle
+const styleSheet = document.createElement('style');
+styleSheet.textContent = searchStyles;
+document.head.appendChild(styleSheet);
+
+    </script>
+
+
+
+
+    
+
+    </body>
+    </html>

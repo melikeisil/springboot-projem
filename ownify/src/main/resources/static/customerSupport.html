@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support - Ownify</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="c.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+       
+
+        /* Customer Support Main Content */
+        .support-main {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+
+        .support-hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 50px;
+            gap: 50px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .support-hero-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .support-hero-badge {
+            background: #fff3e0;
+            color: #ff6b35;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .support-hero h1 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .support-hero-image {
+            flex: 1;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .support-hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .support-search {
+            max-width: 100%;
+            margin: 30px 0 0 0;
+            position: relative;
+        }
+
+        .support-search input {
+            width: 100%;
+            padding: 15px 60px 15px 20px;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            font-size: 16px;
+            background: white;
+        }
+
+        .support-search button {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #ff6b35;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .support-categories {
+            margin-bottom: 60px;
+        }
+
+        .support-categories h2 {
+            text-align: center;
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .category-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-card i {
+            font-size: 48px;
+            color: #ff6b35;
+            margin-bottom: 20px;
+        }
+
+        .category-card h3 {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .category-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .popular-topics {
+            margin-bottom: 60px;
+        }
+
+        .popular-topics h2 {
+            text-align: center;
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .topic-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #ff6b35;
+        }
+
+        .topic-item h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .topic-item p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .contact-section {
+            background: white;
+            padding: 60px 0;
+        }
+
+        .contact-section h3 {
+            text-align: center;
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-method {
+            background: #f8f9fa;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            border-color: #2321b6;
+            transform: translateY(-5px);
+        }
+
+        .contact-method i {
+            font-size: 48px;
+            color: #4335ff;
+            margin-bottom: 20px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.2);
+        }
+
+        .contact-method h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .contact-method p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .contact-method .contact-details {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .contact-method .btn {
+            background: #5035ff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .contact-method .btn:hover {
+            background: #e55a2b;
+        }
+
+        
+        .browse-all {
+            color: #4c21e8;
+            text-decoration: none;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+       
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .search-container {
+                order: 3;
+                margin: 0;
+                max-width: 100%;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .support-hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .support-hero h1 {
+                font-size: 28px;
+            }
+
+            .support-hero-image {
+                max-width: 300px;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+     <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content container">
+            <div class="welcome-text">Welcome to Ownify Online marketplace platform.</div>
+            <div class="follow-links">
+                <span>Follow us</span>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+              
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content container">
+            <div class="logo">
+                <div class="logo-circle">
+                    <span class="logo-icon">O</span>
+                </div>
+                <span class="logo-text">Ownify</span>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for products...">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <div class="header-actions">
+                <div class="header-icons">
+                    <i class="fas fa-heart" onclick="window.location.href='#'" style="cursor: pointer;"></i>
+                    <i class="fas fa-user" onclick="window.location.href='dashboard.html'" style="cursor: pointer;"></i>
+                </div>
+                <button class="login-btn">
+                    <a href="signin.html" style="text-decoration: none; color: inherit;">Log In</a>
+                </button>
+                <button class="signup-btn">
+                    <a href="signup.html" style="text-decoration: none; color: inherit;">Sign Up</a>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <!-- Navigation -->
+<nav class="nav-section">
+    <div class="header-bottom container">
+        <div class="nav-menu">
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    <i class="fas fa-bars"></i>
+                    All Category
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <div class="category-item">
+                        <a href="shop.html?category=computer-laptop" class="main-category">Computer & Laptop</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=car" class="main-category">Car</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=smartphone" class="main-category">SmartPhone</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=tv-appliances" class="main-category">TV & Homes Appliances</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=electronic-accessories" class="main-category">Electronic Accessories</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=house" class="main-category">House</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=land" class="main-category">Land</a>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="customerSupport.html" class="nav-item">
+                <i class="fas fa-headphones"></i>
+                Customer Support
+            </a>
+              
+            <a href="faqs.html" class="nav-item">
+                <i class="fas fa-question-circle"></i>
+                Need Help
+            </a>
+            
+            <div class="contact-info">
+                <i class="fas fa-phone"></i>
+                <span>+1 202 555 0106</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="#"><i class="fas fa-home"></i> Home</a>
+                <span class="breadcrumb-separator">></span>
+                <a href="#">Customer</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Customer Support</span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Customer Support Main Content -->
+    <main class="support-main">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="support-hero">
+                <div class="support-hero-content">
+                    <div class="support-hero-badge">HELP CENTER</div>
+                    <h1>How can we help you?</h1>
+                    <div class="support-search">
+                        <input type="text" placeholder="Enter your question or keyword...">
+                        <button type="submit">Search</button>
+                    </div>
+                </div>
+                <div class="support-hero-image">
+                    <img src="https://yakirox.com/wp-content/uploads/2020/06/musteri-hizmetleri.jpg" alt="Customer Support Representative" />
+                </div>
+            </div>
+
+            <!-- Support Categories -->
+            <div class="support-categories">
+                <h2>What can we assist you with today?</h2>
+                <div class="categories-grid">
+                    <div class="category-card">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>Track Order</h3>
+                        <p>Check the status of your recent orders and get real-time updates on shipping.</p>
+                    </div>
+                    <div class="category-card">
+                        <i class="fas fa-credit-card"></i>
+                        <h3>Make Payment</h3>
+                        <p>Learn about payment methods, billing issues, and payment security.</p>
+                    </div>
+                    <div class="category-card">
+                        <i class="fas fa-undo"></i>
+                        <h3>Product Return</h3>
+                        <p>Get help with returns, refunds, and exchange policies for your purchases.</p>
+                    </div>
+                    <div class="category-card">
+                        <i class="fas fa-user-cog"></i>
+                        <h3>User & Account</h3>
+                        <p>Manage your account settings, profile information, and security preferences.</p>
+                    </div>
+                    <div class="category-card">
+                        <i class="fas fa-tools"></i>
+                        <h3>Technical Support</h3>
+                        <p>Get technical assistance with website issues, app problems, and troubleshooting.</p>
+                    </div>
+                    <div class="category-card">
+                        <i class="fas fa-star"></i>
+                        <h3>Reviews & Rating</h3>
+                        <p>Learn how to leave reviews, rate products, and manage your feedback.</p>
+                    </div>
+                    <div class="category-card">
+                        <i class="fas fa-truck"></i>
+                        <h3>Shipping and Delivery</h3>
+                        <p>Information about shipping options, delivery times, and tracking packages.</p>
+                    </div>
+                    <div class="category-card">
+                        <i class="fas fa-store"></i>
+                        <h3>Sell on Ownify</h3>
+                        <p>Guidelines for sellers, listing products, and managing your seller account.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Popular Topics -->
+            <div class="popular-topics">
+                <h2>Popular Topics</h2>
+                <div class="topics-grid">
+                    <div class="topic-item">
+                        <h4>How do I return my items?</h4>
+                        <p>Learn about our return policy and how to initiate a return request for your purchases.</p>
+                    </div>
+                    <div class="topic-item">
+                        <h4>Where is my Account, how to go to?</h4>
+                        <p>Find your account dashboard and manage your personal information and preferences.</p>
+                    </div>
+                    <div class="topic-item">
+                        <h4>How to cancel my Order Item?</h4>
+                        <p>Steps to cancel your order before it ships and understand our cancellation policy.</p>
+                    </div>
+                    <div class="topic-item">
+                        <h4>What are the Shipping, how Much needed Effort?</h4>
+                        <p>Information about shipping costs, delivery times, and available shipping methods.</p>
+                    </div>
+                    <div class="topic-item">
+                        <h4>What if the Product is Lost OR Damaged?</h4>
+                        <p>Report damaged or lost items and learn about our replacement and refund process.</p>
+                    </div>
+                    <div class="topic-item">
+                        <h4>How to manage my items menu?</h4>
+                        <p>Organize your orders, wishlist, and saved items in your account dashboard.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h3>Don't find your answer.<br>Contact with us</h3>
+            <div class="contact-content">
+                <div class="contact-method">
+                    <i class="fas fa-phone"></i>
+                    <h4>Call on us</h4>
+                    <p>Our customer support is available Monday to Friday from 9:00 AM to 6:00 PM</p>
+                    <div class="contact-details">+1 202 555 0106</div>
+                    <a href="tel:+12025550106" class="btn">Call Now</a>
+                </div>
+                <div class="contact-method">
+                    <i class="fas fa-comments"></i>
+                    <h4>Chat with us</h4>
+                    <p>Get instant help through our live chat support system available 24/7</p>
+                    <div class="contact-details">support@ownify.com</div>
+                    <a href="mailto:support@ownify.com" class="btn">Start Chat</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+      <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <div class="logo-circle">
+                            <span class="logo-icon">O</span>
+                        </div>
+                        <span class="logo-text">Ownify</span>
+                    </div>
+                    <div class="footer-contact">
+                        <p><strong>VISIT OUR STORE</strong></p>
+                        <p>2548 Brooke Street</p>
+                        <p>Colorado, New York 80202</p>
+                        <p><strong>+1 202 555 0106</strong></p>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>TOP CATEGORY</h4>
+                        <ul>
+                            <li><a href="#">Computer</a></li>
+                            <li><a href="#">Laptop</a></li>
+                            <li><a href="#">Camera</a></li>
+                            <li><a href="#">Car</a></li>
+                            <li><a href="#">Electronics</a></li>
+                            <li><a href="#">TV & Home Appliances</a></li>
+                        </ul>
+                        <a href="shopPage.html" class="browse-all">Browse all categories >></a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>QUICK LINKS</h4>
+                        <ul>
+                            <li><a href="shopPage.html">Shop</a></li>
+                            
+                            <li><a href="wishlist.html">Wishlist</a></li>
+                           
+                            <li><a href="customerSupport.html">Customer Help</a></li>
+                            <li><a href="aboutUs.html">About Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Copyright © Ownify Template All rights reserved. Developed by Templateseller.</p>
+            </div>
+        </div>
+    </footer> 
+
+    <script>
+        // Header Actions Functions
+        function toggleWishlist() {
+            alert('Wishlist functionality will be implemented');
+        }
+
+        function viewCart() {
+            alert('Cart functionality will be implemented');
+        }
+
+        function viewProfile() {
+            alert('Profile functionality will be implemented');
+        }
+
+        // Search functionality
+        document.querySelector('.support-search button').addEventListener('click', function() {
+            const searchInput = document.querySelector('.support-search input');
+            const query = searchInput.value.trim();
+            if (query) {
+                alert('Searching for: ' + query);
+                // Here you would implement actual search functionality
+            }
+        });
+
+        // Enter key support for search
+        document.querySelector('.support-search input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.support-search button').click();
+            }
+        });
+
+        // Category card click handlers
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('h3').textContent;
+                alert('Opening ' + title + ' section');
+                // Here you would navigate to specific help sections
+            });
+        });
+
+        // Topic item click handlers
+        document.querySelectorAll('.topic-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const title = this.querySelector('h4').textContent;
+                alert('Opening FAQ: ' + title);
+                // Here you would show detailed FAQ content
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu functionality (for responsive design)
+        function toggleMobileMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('mobile-active');
+        }
+
+        // Add mobile menu styles dynamically for better mobile experience
+        const style = document.createElement('style');
+        style.textContent = `
+            @media (max-width: 768px) {
+                .nav-menu.mobile-active {
+                    display: flex !important;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    background: #34495e;
+                    padding: 20px;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+// Arama fonksiyonları
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('.search-input');
+    const searchBtn = document.querySelector('.search-btn');
+    
+    // Arama butonuna tıklayınca
+    searchBtn.addEventListener('click', function() {
+        performSearch();
+    });
+    
+    // Enter tuşuna basınca
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+    
+    // Gerçek zamanlı arama (kullanıcı yazarken)
+    searchInput.addEventListener('input', function() {
+        // Biraz gecikme ile arama yap (kullanıcı yazmayı bitirsin diye)
+        clearTimeout(window.searchTimeout);
+        window.searchTimeout = setTimeout(performSearch, 300);
+    });
+    
+    function performSearch() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const products = document.querySelectorAll('.product-item');
+        let foundCount = 0;
+        
+        products.forEach(product => {
+            // Ürün başlığı, açıklama, fiyat vb. alanları kontrol et
+            const productTitle = product.querySelector('.product-title, .product-name, h3, h4')?.textContent?.toLowerCase() || '';
+            const productDescription = product.querySelector('.product-description, .product-desc, p')?.textContent?.toLowerCase() || '';
+            const productPrice = product.querySelector('.price, .product-price')?.textContent?.toLowerCase() || '';
+            const productCategory = product.getAttribute('data-category') || '';
+            
+            // Tüm metin içeriğini birleştir
+            const allText = `${productTitle} ${productDescription} ${productPrice} ${productCategory}`.toLowerCase();
+            
+            if (searchTerm === '' || allText.includes(searchTerm)) {
+                product.style.display = 'block';
+                foundCount++;
+            } else {
+                product.style.display = 'none';
+            }
+        });
+        
+        // Sonuç sayısını göster
+        showSearchResults(searchTerm, foundCount);
+    }
+    
+    function showSearchResults(searchTerm, count) {
+        // Varsa önceki sonuç mesajını kaldır
+        const existingResult = document.querySelector('.search-result-message');
+        if (existingResult) {
+            existingResult.remove();
+        }
+        
+        if (searchTerm !== '') {
+            // Sonuç mesajı oluştur
+            const resultMessage = document.createElement('div');
+            resultMessage.className = 'search-result-message';
+            resultMessage.style.cssText = `
+                padding: 15px;
+                margin: 20px 0;
+                background: #f8f9fa;
+                border-left: 4px solid #007bff;
+                border-radius: 4px;
+            `;
+            
+            if (count > 0) {
+                resultMessage.innerHTML = `
+                    <strong>${count}</strong> product${count !== 1 ? 's' : ''} found for "<strong>${searchTerm}</strong>"
+                    <button onclick="clearSearch()" style="float: right; background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Clear</button>
+                `;
+            } else {
+                resultMessage.innerHTML = `
+                    No products found for "<strong>${searchTerm}</strong>"
+                    <button onclick="clearSearch()" style="float: right; background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Clear</button>
+                `;
+            }
+            
+            // Ürün listesinin üstüne ekle
+            const productContainer = document.querySelector('.products-container, .product-grid, .products-grid, main');
+            if (productContainer) {
+                productContainer.insertBefore(resultMessage, productContainer.firstChild);
+            }
+        }
+    }
+    
+    // Global fonksiyon - Clear butonuna tıklayınca
+    window.clearSearch = function() {
+        searchInput.value = '';
+        performSearch(); // Tüm ürünleri göster
+    }
+});
+
+// CSS stilleri dinamik olarak ekle
+const searchStyles = `
+    .search-result-message {
+        animation: fadeIn 0.3s ease-in;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .product-item {
+        transition: all 0.3s ease;
+    }
+    
+    .search-input:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+`;
+
+// Stilleri head'e ekle
+const styleSheet = document.createElement('style');
+styleSheet.textContent = searchStyles;
+document.head.appendChild(styleSheet);
+
+
+
+    </script>
+
+</body>
+</html>

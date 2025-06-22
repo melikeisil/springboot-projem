@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Ownify</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Ana CSS dosyanızı buraya bağlayın -->
+    <link rel="stylesheet" href="c.css">
+  <style>
+  /* Wishlist özel stilleri */
+        .wishlist-section {
+            padding: 40px 0;
+            background-color: #f8f9fa;
+            min-height: 500px;
+        }
+
+        .wishlist-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .wishlist-header {
+            margin-bottom: 30px;
+        }
+
+        .wishlist-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .wishlist-count {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+
+        .wishlist-table {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .wishlist-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .wishlist-table thead {
+            background-color: #34495e;
+            color: white;
+        }
+
+        .wishlist-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .wishlist-table td {
+            padding: 20px 15px;
+            border-bottom: 1px solid #ecf0f1;
+            vertical-align: middle;
+        }
+
+        .wishlist-table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .product-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .product-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #ecf0f1;
+        }
+
+        .product-details h4 {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .product-details p {
+            margin: 0;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        .stock-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .in-stock {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .out-of-stock {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .add-to-cart-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .add-to-cart-btn:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .remove-btn {
+            color: #e74c3c;
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .remove-btn:hover {
+            color: #c0392b;
+        }
+
+        .empty-wishlist {
+            text-align: center;
+            padding: 60px 20px;
+            color: #7f8c8d;
+        }
+
+        .empty-wishlist i {
+            font-size: 64px;
+            margin-bottom: 20px;
+            color: #bdc3c7;
+        }
+
+        .empty-wishlist h3 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+        }
+
+        .continue-shopping-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .continue-shopping-btn:hover {
+            background-color: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .wishlist-table {
+                overflow-x: auto;
+            }
+
+            .wishlist-table table {
+                min-width: 700px;
+            }
+
+            .product-info {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .product-image {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: slideIn 0.3s ease;
+            color: white;
+        }
+
+        .notification.success {
+            background-color: #28a745;
+        }
+
+        .notification.error {
+            background-color: #dc3545;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Empty Wishlist Styles */
+        .empty-wishlist {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .empty-wishlist i {
+            font-size: 64px;
+            color: #dc3545;
+            margin-bottom: 20px;
+        }
+
+        .empty-wishlist h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .empty-wishlist p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .continue-shopping-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .continue-shopping-btn:hover {
+            background: #0056b3;
+        }
+
+  </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content container">
+            <div class="welcome-text">Welcome to Ownify Online marketplace platform.</div>
+            <div class="follow-links">
+                <span>Follow us</span>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content container">
+            <div class="logo">
+                <div class="logo-circle">
+                    <span class="logo-icon">O</span>
+                </div>
+                <span class="logo-text">Ownify</span>
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for products...">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+                    <div class="header-actions">                     
+    <div class="header-icons">                         
+        <a href="messaging.html" style="text-decoration: none; color: inherit;"> <i class="fas fa-comment-alt"></i> </a>                                                       
+        <i class="fas fa-heart" onclick="window.location.href='wishlist.html'" style="cursor: pointer;"></i>                         
+        <i class="fas fa-user-circle" onclick="window.location.href='dashboard.html'" style="cursor: pointer;"></i>                    
+    </div>                 
+</div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+   <!-- Navigation -->
+<nav class="nav-section">
+    <div class="header-bottom container">
+        <div class="nav-menu">
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    <i class="fas fa-bars"></i>
+                    All Category
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <div class="category-item">
+                        <a href="shop.html?category=computer-laptop" class="main-category">Computer & Laptop</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=car" class="main-category">Car</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=smartphone" class="main-category">SmartPhone</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=tv-appliances" class="main-category">TV & Homes Appliances</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=electronic-accessories" class="main-category">Electronic Accessories</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=house" class="main-category">House</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="shop.html?category=land" class="main-category">Land</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="customerSupport.html" class="nav-item">
+                <i class="fas fa-headphones"></i>
+                Customer Support
+            </a>
+
+            <a href="faqs.html" class="nav-item">
+                <i class="fas fa-question-circle"></i>
+                Need Help
+            </a>
+
+            <div class="contact-info">
+                <i class="fas fa-phone"></i>
+                <span>+1 202 555 0106</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="#"><i class="fas fa-home"></i> Home</a>
+                <span class="breadcrumb-separator">></span>
+                <a href="#">Account</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Wishlist</span>
+            </div>
+        </div>
+    </div>
+
+      <!-- Wishlist Ana Kısmı -->
+    <section class="wishlist-section">
+        <div class="wishlist-container">
+            <div class="wishlist-header">
+                <h1 class="wishlist-title">WISHLIST</h1>
+                <p class="wishlist-count" id="wishlist-count">5 Products</p>
+            </div>
+
+            <!-- Wishlist Tablosu -->
+            <div class="wishlist-table" id="wishlist-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Stock Status</th>
+                            <th>Action</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="wishlist-items">
+                        <!-- Wishlist items will be loaded from the backend -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Boş Wishlist Durumu -->
+            <div class="empty-wishlist" id="empty-wishlist" style="display: none;">
+                <i class="fas fa-heart-broken"></i>
+                <h3>Your wishlist is empty</h3>
+                <p>You haven't added any products to your wishlist yet.</p>
+                <button class="continue-shopping-btn" onclick="continueShopping()">
+                    <i class="fas fa-shopping-bag"></i> Continue Shopping
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+      <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <div class="logo-circle">
+                            <span class="logo-icon">O</span>
+                        </div>
+                        <span class="logo-text">Ownify</span>
+                    </div>
+                    <div class="footer-contact">
+                        <p><strong>VISIT OUR STORE</strong></p>
+                        <p>2548 Brooke Street</p>
+                        <p>Colorado, New York 80202</p>
+                        <p><strong>+1 202 555 0106</strong></p>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>TOP CATEGORY</h4>
+                        <ul>
+                            <li><a href="#">Computer</a></li>
+                            <li><a href="#">Laptop</a></li>
+                            <li><a href="#">Camera</a></li>
+                            <li><a href="#">Car</a></li>
+                            <li><a href="#">Electronics</a></li>
+                            <li><a href="#">TV & Home Appliances</a></li>
+                        </ul>
+                        <a href="shopPage.html" class="browse-all">Browse all categories >></a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>QUICK LINKS</h4>
+                        <ul>
+                            <li><a href="shopPage.html">Shop</a></li>
+
+                            <li><a href="wishlist.html">Wishlist</a></li>
+
+                            <li><a href="customerSupport.html">Customer Help</a></li>
+                            <li><a href="aboutUs.html">About Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>Copyright © Ownify Template All rights reserved. Developed by Templateseller.</p>
+            </div>
+        </div>
+    </footer> 
+    <script>
+        // Add this at the beginning of your script
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('isLoggedIn') !== 'true') {
+                alert('Please log in to view your wishlist');
+                window.location.href = 'signin.html';
+                return;
+            }
+            loadWishlistItems();
+        });
+
+        function loadWishlistItems() {
+            fetch('/wishlist/items', {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(items => {
+                const container = document.querySelector('.wishlist-items');
+                if (items.length === 0) {
+                    container.innerHTML = '<div class="empty-wishlist">Your wishlist is empty</div>';
+                    return;
+                }
+
+                container.innerHTML = items.map(item => `
+                    <div class="wishlist-item">
+                        <div class="item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="item-details">
+                            <h3>${item.name}</h3>
+                            <p class="item-category">${item.category}</p>
+                            <p class="item-price">₺${item.price.toLocaleString()}</p>
+                        </div>
+                        <div class="item-actions">
+                            <button onclick="viewProduct(${item.id})" class="view-btn">View Product</button>
+                            <button onclick="removeFromWishlist(${item.id})" class="remove-btn">Remove</button>
+                        </div>
+                    </div>
+                `).join('');
+            })
+            .catch(error => {
+                console.error('Error loading wishlist:', error);
+                alert('Error loading wishlist items');
+            });
+        }
+
+        function removeFromWishlist(productId) {
+            if (confirm('Are you sure you want to remove this item from your wishlist?')) {
+                // Find the product row
+                const row = document.querySelector(`tr[data-product-id="${productId}"]`);
+                if (row) {
+                    // Remove the row with animation
+                    row.style.transition = 'all 0.3s ease';
+                    row.style.opacity = '0';
+                    row.style.transform = 'translateX(20px)';
+                    
+                    setTimeout(() => {
+                        row.remove();
+                        updateWishlistCount();
+                        checkEmptyWishlist();
+                        showNotification('Item removed from wishlist successfully', 'success');
+                    }, 300);
+                }
+            }
+        }
+
+        function viewProduct(productId) {
+            window.location.href = `productDetail.html?id=${productId}`;
+        }
+
+        // Wishlist fonksiyonları - Backend ile entegrasyon için hazır
+       //is logged in
+        window.onload = function() {
+  if (localStorage.getItem("isLoggedIn") !== "true") {
+    window.location.href = "signin.html";
+  }}
+        // Ürünü sepete ekle
+        function addToCart(productId) {
+            console.log('Adding product to cart:', productId);
+
+            // Show loading state on button
+            const button = document.querySelector(`tr[data-product-id="${productId}"] .add-to-cart-btn`);
+            if (button) {
+                const originalText = button.textContent;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
+                button.disabled = true;
+
+                // Simulate API call (in a real app, this would be an actual API call)
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    showNotification('Product added to cart successfully!', 'success');
+
+                    // In a real implementation, this would be:
+                    /*
+                    fetch('/api/cart/add', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: `productId=${productId}`,
+                        credentials: 'include'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        button.innerHTML = originalText;
+                        button.disabled = false;
+
+                        if (data.success) {
+                            showNotification(data.message || 'Product added to cart!', 'success');
+                        } else {
+                            showNotification(data.message || 'Failed to add product to cart', 'error');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error adding to cart:', error);
+                        button.innerHTML = originalText;
+                        button.disabled = false;
+                        showNotification('Error adding product to cart. Please try again.', 'error');
+                    });
+                    */
+                }, 1000);
+            } else {
+                showNotification('Product added to cart!', 'success');
+            }
+        }
+
+        // Wishlist sayısını güncelle
+        function updateWishlistCount() {
+            const itemCount = document.querySelectorAll('#wishlist-items tr').length;
+            document.getElementById('wishlist-count').textContent = `${itemCount} Products`;
+        }
+
+        // Boş wishlist kontrolü
+        function checkEmptyWishlist() {
+            const items = document.querySelectorAll('#wishlist-items tr');
+            const wishlistTable = document.getElementById('wishlist-table');
+            const wishlistCount = document.getElementById('wishlist-count');
+            
+            if (items.length === 0) {
+                wishlistTable.innerHTML = `
+                    <div class="empty-wishlist">
+                        <i class="fas fa-heart-broken"></i>
+                        <h3>Your Wishlist is Empty</h3>
+                        <p>Add items that you like to your wishlist</p>
+                        <button class="continue-shopping-btn" onclick="window.location.href='shopPage.html'">
+                            Continue Shopping
+                        </button>
+                    </div>
+                `;
+                wishlistCount.textContent = '0 Products';
+            } else {
+                wishlistCount.textContent = `${items.length} Products`;
+            }
+        }
+
+        // Alışverişe devam et
+        function continueShopping() {
+            window.location.href = 'shopPage.html'; // Shop sayfasına yönlendir
+        }
+
+        // Sayfa yüklendiğinde çalışacak fonksiyonlar
+        document.addEventListener('DOMContentLoaded', function() {
+            updateWishlistCount();
+
+            // Backend'den wishlist verilerini yükle
+            loadWishlistFromBackend();
+        });
+
+        // Backend'den wishlist verilerini yükle
+        function loadWishlistFromBackend() {
+            // Clear any existing items
+            document.getElementById('wishlist-items').innerHTML = '';
+
+            // Show loading state
+            const wishlistTable = document.getElementById('wishlist-table');
+            const emptyWishlist = document.getElementById('empty-wishlist');
+
+            wishlistTable.style.opacity = '0.5';
+            emptyWishlist.style.display = 'none';
+
+            // Fetch actual wishlist items from backend
+            fetch('/wishlist/items', {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                credentials: 'include'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load wishlist');
+                }
+                return response.json();
+            })
+            .then(data => {
+                wishlistTable.style.opacity = '1';
+
+                // If we have items from the API, render them
+                if (data && data.length > 0) {
+                    // Render actual items
+                    renderWishlistItems(data);
+                    wishlistTable.style.display = 'block';
+                    emptyWishlist.style.display = 'none';
+                } else {
+                    // Show empty state if no items
+                    wishlistTable.style.display = 'none';
+                    emptyWishlist.style.display = 'block';
+                }
+
+                updateWishlistCount();
+            })
+            .catch(error => {
+                console.error('Error loading wishlist:', error);
+                wishlistTable.style.opacity = '1';
+
+                // Show empty state on error
+                wishlistTable.style.display = 'none';
+                emptyWishlist.style.display = 'block';
+
+                updateWishlistCount();
+            });
+        }
+
+        // Wishlist ürünlerini render et (backend verileri için)
+        function renderWishlistItems(items) {
+            const tbody = document.getElementById('wishlist-items');
+            tbody.innerHTML = '';
+
+            items.forEach(item => {
+                const row = createWishlistRow(item);
+                tbody.appendChild(row);
+            });
+        }
+
+        // Wishlist satırı oluştur
+        function createWishlistRow(item) {
+            const row = document.createElement('tr');
+            row.setAttribute('data-product-id', item.id);
+
+            row.innerHTML = `
+                <td>
+                    <div class="product-info">
+                        <img src="${item.image}" alt="${item.name}" class="product-image">
+                        <div class="product-details">
+                            <h4>${item.name}</h4>
+                            <p>${item.category} | ${item.variant}</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="price">$${item.price}</td>
+                <td>
+                    <span class="stock-status ${item.inStock ? 'in-stock' : 'out-of-stock'}">
+                        ${item.inStock ? 'In Stock' : 'Out of Stock'}
+                    </span>
+                </td>
+                <td>
+                    <button class="add-to-cart-btn" onclick="goToProduct(${item.id})">
+                        Go to Product
+                    </button>
+                </td>
+                <td>
+                    <i class="fas fa-times remove-btn" onclick="removeFromWishlist(${item.id})" 
+                       title="Remove from wishlist"></i>
+                </td>
+            `;
+
+            return row;
+        }
+
+        // Ürün detay sayfasına git
+        function goToProduct(productId) {
+            window.location.href = `productDetail.html?id=${productId}`;
+        }
+
+        // Header fonksiyonları (mevcut kodunuzla uyumlu)
+        function toggleWishlist() {
+            // Wishlist popup/sayfası göster/gizle
+        }
+
+        function viewCart() {
+            window.location.href = '/cart';
+        }
+
+        function viewProfile() {
+            window.location.href = '/profile';
+        }
+
+        // Show notification function
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // 3 saniye sonra bildirimi kaldır
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+// Arama fonksiyonları
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('.search-input');
+    const searchBtn = document.querySelector('.search-btn');
+
+    // Arama butonuna tıklayınca
+    searchBtn.addEventListener('click', function() {
+        performSearch();
+    });
+
+    // Enter tuşuna basınca
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+
+    // Gerçek zamanlı arama (kullanıcı yazarken)
+    searchInput.addEventListener('input', function() {
+        // Biraz gecikme ile arama yap (kullanıcı yazmayı bitirsin diye)
+        clearTimeout(window.searchTimeout);
+        window.searchTimeout = setTimeout(performSearch, 300);
+    });
+
+    function performSearch() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const products = document.querySelectorAll('.product-item');
+        let foundCount = 0;
+
+        products.forEach(product => {
+            // Ürün başlığı, açıklama, fiyat vb. alanları kontrol et
+            const productTitle = product.querySelector('.product-title, .product-name, h3, h4')?.textContent?.toLowerCase() || '';
+            const productDescription = product.querySelector('.product-description, .product-desc, p')?.textContent?.toLowerCase() || '';
+            const productPrice = product.querySelector('.price, .product-price')?.textContent?.toLowerCase() || '';
+            const productCategory = product.getAttribute('data-category') || '';
+
+            // Tüm metin içeriğini birleştir
+            const allText = `${productTitle} ${productDescription} ${productPrice} ${productCategory}`.toLowerCase();
+
+            if (searchTerm === '' || allText.includes(searchTerm)) {
+                product.style.display = 'block';
+                foundCount++;
+            } else {
+                product.style.display = 'none';
+            }
+        });
+
+        // Sonuç sayısını göster
+        showSearchResults(searchTerm, foundCount);
+    }
+
+    function showSearchResults(searchTerm, count) {
+        // Varsa önceki sonuç mesajını kaldır
+        const existingResult = document.querySelector('.search-result-message');
+        if (existingResult) {
+            existingResult.remove();
+        }
+
+        if (searchTerm !== '') {
+            // Sonuç mesajı oluştur
+            const resultMessage = document.createElement('div');
+            resultMessage.className = 'search-result-message';
+            resultMessage.style.cssText = `
+                padding: 15px;
+                margin: 20px 0;
+                background: #f8f9fa;
+                border-left: 4px solid #007bff;
+                border-radius: 4px;
+            `;
+
+            if (count > 0) {
+                resultMessage.innerHTML = `
+                    <strong>${count}</strong> product${count !== 1 ? 's' : ''} found for "<strong>${searchTerm}</strong>"
+                    <button onclick="clearSearch()" style="float: right; background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Clear</button>
+                `;
+            } else {
+                resultMessage.innerHTML = `
+                    No products found for "<strong>${searchTerm}</strong>"
+                    <button onclick="clearSearch()" style="float: right; background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Clear</button>
+                `;
+            }
+
+            // Ürün listesinin üstüne ekle
+            const productContainer = document.querySelector('.products-container, .product-grid, .products-grid, main');
+            if (productContainer) {
+                productContainer.insertBefore(resultMessage, productContainer.firstChild);
+            }
+        }
+    }
+
+    // Global fonksiyon - Clear butonuna tıklayınca
+    window.clearSearch = function() {
+        searchInput.value = '';
+        performSearch(); // Tüm ürünleri göster
+    }
+});
+
+// CSS stilleri dinamik olarak ekle
+const searchStyles = `
+    .search-result-message {
+        animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .product-item {
+        transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+`;
+
+// Stilleri head'e ekle
+const styleSheet = document.createElement('style');
+styleSheet.textContent = searchStyles;
+document.head.appendChild(styleSheet);
+
+
+
+
+    </script>
+
+    </body>
+    </html>

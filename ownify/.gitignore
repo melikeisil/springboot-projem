@@ -1,0 +1,68 @@
+# Yardım dosyası
+HELP.md
+
+# Maven Wrapper jar dosyası hariç target klasörü hariç tutulsun
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### Spring Tool Suite (STS) ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### Visual Studio Code ###
+.vscode/
+
+# Derlenmiş class dosyaları
+*.class
+
+# Log dosyaları
+*.log
+
+# BlueJ dosyaları
+*.ctxt
+
+# J2ME geçici dosyaları
+.mtj.tmp/
+
+# Paket dosyaları
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# JVM hata raporları
+hs_err_pid*
+replay_pid*
+
+# Özel klasörler
+/.apt_generated_tests/
+
+# Klasörü hariç tutma
+!ownify.zip_expanded/
+!ownify.zip_expanded/**
