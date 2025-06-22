@@ -28,7 +28,7 @@ public class Category {
     @JsonIgnoreProperties("category")
     private List<Product> products;
 
-    // Constructors, Getters and Setters
+    
     public Category() {}
 
     public Category(String name, String description) {
