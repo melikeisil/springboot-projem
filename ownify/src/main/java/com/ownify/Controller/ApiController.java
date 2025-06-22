@@ -62,7 +62,6 @@ public class ApiController {
     public ResponseEntity<List<Product>> getFeaturedProducts(@RequestParam(defaultValue = "8") int limit) {
         List<Product> allProducts = productService.getAllProducts();
 
-        // Get latest products as featured (you can modify this logic)
         List<Product> featuredProducts = allProducts.stream()
                 .sorted((p1, p2) -> p2.getCreatedAt().compareTo(p1.getCreatedAt()))
                 .limit(limit)
@@ -75,7 +74,7 @@ public class ApiController {
     public ResponseEntity<List<Product>> getRandomProducts(@RequestParam(defaultValue = "6") int limit) {
         List<Product> allProducts = productService.getAllProducts();
 
-        // Simple random selection (you might want to implement better randomization)
+       
         java.util.Collections.shuffle(allProducts);
         List<Product> randomProducts = allProducts.stream()
                 .limit(limit)
@@ -93,13 +92,13 @@ public class ApiController {
     @PostMapping("/products")
     public ResponseEntity<?> createProduct(@RequestBody Map<String, Object> productData, HttpSession session) {
         try {
-            // Get the logged-in user
+           
             User user = (User) session.getAttribute("user");
             if (user == null) {
                 return ResponseEntity.status(401).body(Map.of("error", "User not logged in"));
             }
 
-            // Extract product data
+           
             String title = (String) productData.get("title");
             String description = (String) productData.get("description");
             BigDecimal price = new BigDecimal(productData.get("price").toString());
@@ -111,11 +110,11 @@ public class ApiController {
                 return ResponseEntity.badRequest().body(Map.of("error", "Missing required fields"));
             }
 
-            // Get the category
+            
             Category category = categoryService.getCategoryById(categoryId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid category ID"));
 
-            // Create and save the product
+           
             Product product = new Product();
             product.setTitle(title);
             product.setDescription(description);
@@ -124,7 +123,7 @@ public class ApiController {
             product.setUser(user);
             product.setImageUrl(imageUrl);
 
-            // Optional fields
+          
             if (productData.get("brand") != null) {
                 product.setBrand((String) productData.get("brand"));
             }
