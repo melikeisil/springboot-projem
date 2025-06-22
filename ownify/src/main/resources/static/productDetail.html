@@ -24,7 +24,7 @@
             padding: 0 20px;
         }
 
-        /* Product Detail Main Section */
+      
         .product-detail-section {
             background: white;
             padding: 30px 0;
@@ -110,7 +110,7 @@
             transform: scale(1.05);
         }
 
-        /* Product Info */
+      
         .product-info {
             padding: 20px 0;
         }
@@ -201,7 +201,7 @@
             margin-top: 10px;
         }
 
-        /* Action Buttons */
+   
         .action-buttons {
             display: flex;
             gap: 10px;
@@ -258,7 +258,7 @@
             color: white;
         }
 
-        /* Contact Information */
+     
         .contact-info {
             background: #f8f9fa;
             padding: 20px;
@@ -325,7 +325,7 @@
             color: white;
         }
 
-        /* Description Section */
+ 
         .description-section {
             background: white;
             padding: 30px 0;
@@ -361,7 +361,7 @@
             margin-bottom: 8px;
         }
 
-        /* Specifications */
+     
         .specs-table {
             width: 100%;
             border-collapse: collapse;
@@ -386,7 +386,7 @@
             background: #f8f9fa;
         }
 
-        /* Responsive Design */
+      
         @media (max-width: 768px) {
             .product-detail-container {
                 grid-template-columns: 1fr;
@@ -428,7 +428,7 @@
             }
         }
 
-        /* Animation for loading */
+      
         .fade-in {
             animation: fadeIn 0.5s ease-in;
         }
@@ -438,7 +438,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* New CSS for location display */
+       
         .location {
             display: flex;
             align-items: center;
@@ -453,7 +453,7 @@
 </head>
 <body>
 
- <!-- Top Bar -->
+
     <div class="top-bar">
         <div class="top-bar-content container">
             <div class="welcome-text">Welcome to Ownify Online marketplace platform.</div>
@@ -467,7 +467,6 @@
         </div>
     </div>
 
-    <!-- Header -->
     <header class="header">
         <div class="header-content container">
             <div class="logo">
@@ -495,8 +494,7 @@
         </div>
     </header>
 
-    <!-- Navigation -->
-    <!-- Navigation -->
+
 <nav class="nav-section">
     <div class="header-bottom container">
         <div class="nav-menu">
@@ -549,7 +547,7 @@
     </div>
 </nav>
 
-    <!-- Breadcrumb -->
+ 
     <div class="breadcrumb-section">
         <div class="container">
             <div class="breadcrumb">
@@ -563,11 +561,11 @@
     </div>
 
 
-    <!-- Product Detail Section -->
+ 
     <section class="product-detail-section fade-in">
         <div class="container">
             <div class="product-detail-container">
-                <!-- Product Images -->
+        
                 <div class="product-images">
                     <div class="main-image-container">
                         <img id="mainImage" src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=350&fit=crop" alt="Product Image" class="main-image">
@@ -577,7 +575,7 @@
                     </div>
                 </div>
 
-                <!-- Product Information -->
+             
                 <div class="product-info">
                     <h1 class="product-title" id="productTitle"></h1>
                     
@@ -651,21 +649,21 @@
         </div>
     </section>
 
-    <!-- Description Section -->
+
     <section class="description-section fade-in">
         <div class="container">
             <h2 class="section-title">Product Description</h2>
             <div class="description-content" id="productDescription">
-                <!-- Description will be loaded dynamically -->
+              
             </div>
 
             <h3 class="section-title" style="margin-top: 40px;">Technical Specifications</h3>
             <table class="specs-table" id="productSpecs">
-                <!-- Specifications will be loaded dynamically -->
+             
             </table>
         </div>
     </section>
- <!-- Footer -->
+
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -719,29 +717,22 @@
 
     <script>
 
-//login yaptı mı 
-/*
-if (localStorage.getItem("isLoggedIn") !== "true") {
-  window.location.href = "signin.html";
-}*/
 
-
-        // Image gallery functionality
         function changeImage(thumbnail) {
             const mainImage = document.getElementById('mainImage');
             const thumbnails = document.querySelectorAll('.thumbnail');
             
-            // Remove active class from all thumbnails
+            
             thumbnails.forEach(thumb => thumb.classList.remove('active'));
             
-            // Add active class to clicked thumbnail
+           
             thumbnail.classList.add('active');
             
-            // Update main image source
+         
             mainImage.src = thumbnail.src.replace('80x80', '600x350');
         }
 
-        // Contact seller functionality
+    
         function contactSeller() {
             const urlParams = new URLSearchParams(window.location.search);
             const productId = urlParams.get('id');
@@ -751,11 +742,11 @@ if (localStorage.getItem("isLoggedIn") !== "true") {
                 return;
             }
 
-            // You can implement the contact seller functionality here
+      
             alert('Contact seller feature will be implemented soon');
         }
 
-        // Add to wishlist functionality
+    
         function addToWishlist() {
             if (localStorage.getItem('isLoggedIn') !== 'true') {
                 alert('Please log in to add items to your wishlist');
@@ -798,7 +789,7 @@ if (localStorage.getItem("isLoggedIn") !== "true") {
             });
         }
 
-        // Share product functionality
+    
         function shareProduct() {
             const productUrl = window.location.href;
             const productTitle = document.querySelector('.product-title').textContent;
@@ -818,7 +809,7 @@ if (localStorage.getItem("isLoggedIn") !== "true") {
             }
         }
 
-        // Call seller
+ 
         function callSeller() {
             const productId = new URLSearchParams(window.location.search).get('id');
             fetch(`/api/products/${productId}/seller-phone`, {
@@ -842,14 +833,14 @@ if (localStorage.getItem("isLoggedIn") !== "true") {
             });
         }
 
-        // Message seller
+
         function messageSeller() {
             const productId = new URLSearchParams(window.location.search).get('id');
-            // Doğrudan messaging.html'e yönlendir
+        
             window.location.href = `messaging.html?productId=${productId}`;
         }
 
-        // View seller profile
+       
         function viewSellerProfile() {
             const productId = new URLSearchParams(window.location.search).get('id');
             fetch(`/api/products/${productId}/seller-id`, {
@@ -869,13 +860,13 @@ if (localStorage.getItem("isLoggedIn") !== "true") {
             });
         }
 
-        // Image modal for zoom
+
         function openImageModal() {
-            // Bu fonksiyon image zoom modalını açacak
+         
             alert('Image zoom modal functionality - To be implemented');
         }
 
-        // Initialize page
+    
         document.addEventListener('DOMContentLoaded', function() {
             // Get product ID from URL parameters
             const urlParams = new URLSearchParams(window.location.search);
@@ -889,7 +880,7 @@ if (localStorage.getItem("isLoggedIn") !== "true") {
             }
         });
 
-        // Load product data from database
+    
         function loadProductData(productId) {
             fetch(`/api/products/${productId}`)
                 .then(response => {
@@ -899,7 +890,7 @@ if (localStorage.getItem("isLoggedIn") !== "true") {
                     return response.json();
                 })
                 .then(data => {
-                    console.log('Product data:', data); // Debug log
+                    console.log('Product data:', data); 
                     updateProductInfo(data);
                 })
                 .catch(error => {
@@ -909,44 +900,44 @@ if (localStorage.getItem("isLoggedIn") !== "true") {
                 });
         }
 
-        // Update product information on page
+   
         function updateProductInfo(productData) {
-            // Update main image
+    
             if (productData.imageUrl) {
                 document.getElementById('mainImage').src = productData.imageUrl;
             }
 
-            // Basic product information
+            
             document.getElementById('productTitle').textContent = productData.title;
             document.getElementById('productId').textContent = productData.id;
             document.getElementById('currentPrice').textContent = `₺${parseFloat(productData.price).toLocaleString()}`;
             
-            // Category
+          
             if (productData.category) {
                 document.getElementById('productCategory').textContent = productData.category.name;
             }
 
-            // Condition
+            
             if (productData.condition) {
                 document.getElementById('productCondition').textContent = productData.condition;
             }
 
-            // Location
+      
             if (productData.location) {
                 document.getElementById('productLocation').textContent = productData.location;
             } else if (productData.city && productData.district) {
                 document.getElementById('productLocation').textContent = `${productData.district}, ${productData.city}`;
             }
 
-            // Description
+            
             document.getElementById('productDescription').innerHTML = productData.description || 'No description available';
             
-            // Product Details
+         
             if (productData.brand) {
                 document.getElementById('productBrand').textContent = productData.brand;
             }
 
-            // Additional Details (dynamic fields from ad posting)
+           
             const additionalDetails = document.getElementById('additionalDetails');
             additionalDetails.innerHTML = '';
             
@@ -962,7 +953,7 @@ if (localStorage.getItem("isLoggedIn") !== "true") {
                 });
             }
 
-            // Seller Information
+         
             if (productData.seller) {
                 document.getElementById('sellerName').textContent = productData.seller.name;
                 if (productData.seller.location) {
@@ -979,7 +970,7 @@ if (localStorage.getItem("isLoggedIn") !== "true") {
                 }
             }
 
-            // Original price and discount if available
+       
             if (productData.originalPrice && productData.originalPrice > productData.price) {
                 document.getElementById('originalPrice').textContent = `₺${parseFloat(productData.originalPrice).toLocaleString()}`;
                 const discountPercent = Math.round(((productData.originalPrice - productData.price) / productData.originalPrice) * 100);
@@ -990,7 +981,7 @@ if (localStorage.getItem("isLoggedIn") !== "true") {
             }
         }
 
-        // Add this function at the beginning of your script
+       
         function goToWishlist() {
             if (localStorage.getItem('isLoggedIn') !== 'true') {
                 alert('Please log in to view your wishlist');
@@ -1000,32 +991,7 @@ if (localStorage.getItem("isLoggedIn") !== "true") {
             window.location.href = 'wishlist.html';
         }
 
-        /* 
-        VERİTABANI ENTEGRASYONU İÇİN GEREKLİ ALANLAR:
-        
-        products tablosu:
-        - id, title, description, price, original_price, discount_percentage
-        - main_image, images (JSON), specifications (JSON)
-        - seller_id, category_id, stock_quantity, status
-        - created_at, updated_at
-        
-        sellers tablosu:
-        - id, name, avatar, phone, email, rating, review_count
-        - store_name, address, verified
-        
-        product_images tablosu:
-        - id, product_id, image_url, is_main, sort_order
-        
-        product_specifications tablosu:
-        - id, product_id, spec_name, spec_value
-        
-        PHP Backend fonksiyonları:
-        - getProductById($id)
-        - getProductImages($productId)
-        - getProductSpecifications($productId)
-        - getSellerInfo($sellerId)
-        - updateProductViews($productId)
-        */
+      
     </script>
 </body>
 </html>
