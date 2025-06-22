@@ -9,7 +9,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        // Map view controller paths to their corresponding HTML files
+        
         registry.addViewController("/dashboard").setViewName("forward:/dashboard.html");
         registry.addViewController("/signin").setViewName("forward:/signin.html");
         registry.addViewController("/signup").setViewName("forward:/signup.html");
