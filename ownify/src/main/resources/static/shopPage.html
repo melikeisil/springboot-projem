@@ -24,7 +24,7 @@
             padding: 0 15px;
         }
 
-        /* Shop Main Content */
+    
         .shop-main {
             display: flex;
             gap: 20px;
@@ -32,7 +32,7 @@
             min-height: 600px;
         }
 
-        /* Sidebar Filters */
+    
         .shop-sidebar {
             width: 250px;
             background: white;
@@ -126,7 +126,7 @@
             color: #666;
         }
 
-        /* Clear All Filters Button */
+
         .clear-all-filters {
             width: 100%;
             padding: 10px;
@@ -146,7 +146,7 @@
             border-color: #007bff;
         }
 
-        /* Main Content Area */
+
         .shop-content {
             flex: 1;
         }
@@ -206,7 +206,6 @@
             cursor: pointer;
         }
 
-        /* Products Grid */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -347,7 +346,7 @@
             gap: 4px;
         }
 
-        /* Pagination */
+
         .pagination {
             display: flex;
             justify-content: center;
@@ -379,7 +378,7 @@
             cursor: not-allowed;
         }
 
-        /* Responsive */
+
         @media (max-width: 768px) {
             .shop-main {
                 flex-direction: column;
@@ -401,7 +400,7 @@
             }
         }
 
-        /* Loading State */
+
         .loading {
             text-align: center;
             padding: 40px;
@@ -421,7 +420,6 @@
 </head>
 <body>
 
- <!-- Top Bar -->
     <div class="top-bar">
         <div class="top-bar-content container">
             <div class="welcome-text">Welcome to Ownify Online marketplace platform.</div>
@@ -435,7 +433,7 @@
         </div>
     </div>
 
-    <!-- Header -->
+
     <header class="header">
         <div class="header-content container">
             <div class="logo">
@@ -468,8 +466,7 @@
         </div>
     </header>
 
-    <!-- Navigation -->
-    <!-- Navigation -->
+  
 <nav class="nav-section">
     <div class="header-bottom container">
         <div class="nav-menu">
@@ -522,7 +519,7 @@
     </div>
 </nav>
 
-    <!-- Breadcrumb -->
+
     <div class="breadcrumb-section">
         <div class="container">
             <div class="breadcrumb">
@@ -537,7 +534,7 @@
 
 
     <div class="shop-main container">
-        <!-- Sidebar Filters -->
+
         <div class="shop-sidebar">
             <button class="clear-all-filters" onclick="clearAllFilters()">
                 <i class="fas fa-times-circle"></i> Clear All Filters
@@ -549,7 +546,7 @@
                     <span class="clear-section" onclick="clearCategoryFilters()">Clear</span>
                 </div>
                 <div id="category-filters">
-                    <!-- Categories will be populated dynamically -->
+              
                 </div>
             </div>
 
@@ -571,7 +568,7 @@
                     <span class="clear-section" onclick="clearBrandFilters()">Clear</span>
                 </div>
                 <div id="brand-filters">
-                    <!-- Brands will be populated dynamically -->
+      
                 </div>
             </div>
 
@@ -581,14 +578,14 @@
                     <span class="clear-section" onclick="clearLocationFilters()">Clear</span>
                 </div>
                 <div id="location-filters">
-                    <!-- Locations will be populated dynamically -->
+                  
                 </div>
             </div>
         </div>
 
-        <!-- Main Content -->
+
         <div class="shop-content">
-            <!-- Shop Header -->
+      
             <div class="shop-header">
                 <div class="shop-controls">
                     <div class="results-info">
@@ -614,25 +611,25 @@
                 </div>
             </div>
 
-            <!-- Products Grid -->
+
             <div class="products-grid" id="products-container">
-                <!-- Products will be loaded here dynamically -->
+              
             </div>
 
-            <!-- Loading State -->
+ 
             <div class="loading" id="loading" style="display: none;">
                 <i class="fas fa-spinner"></i>
                 <p>Loading products...</p>
             </div>
 
-            <!-- Pagination -->
+     
             <div class="pagination" id="pagination">
-                <!-- Pagination will be generated dynamically -->
+   
             </div>
         </div>
     </div>
 
-      <!-- Footer -->
+ 
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -688,7 +685,7 @@
 
 
     <script>
-        // Expanded product data with more variety
+    
         const sampleProducts = [
             {
                 id: 1,
@@ -841,18 +838,18 @@
         let currentPage = 1;
         const productsPerPage = 12;
 
-        // Initialize
+     
         document.addEventListener('DOMContentLoaded', function() {
-            // Show loading state
+      
             document.getElementById('loading').style.display = 'block';
 
-            // Fetch products from API
+            
             fetchProducts()
                 .then(() => {
-                    // Hide loading state
+                 
                     document.getElementById('loading').style.display = 'none';
 
-                    // Initialize UI
+                 
                     initializeFilters();
                     renderProducts();
                     setupEventListeners();
@@ -870,7 +867,7 @@
                 });
         });
 
-        // Function to fetch products from API
+    
         async function fetchProducts() {
             try {
                 const response = await fetch('/api/products');
@@ -880,21 +877,20 @@
 
                 const products = await response.json();
 
-                // Always start with the sample products
+              
                 allProducts = [...sampleProducts];
 
-                // If we have products from the API, add them to the sample products
+               
                 if (products && products.length > 0) {
-                    // Add API products to the sample products
+                    
                     allProducts = [...allProducts, ...products];
                 }
 
-                // Initialize filtered products
+                
                 filteredProducts = [...allProducts];
 
             } catch (error) {
                 console.error('Error fetching products:', error);
-                // Fallback to sample products on error
                 allProducts = [...sampleProducts];
                 filteredProducts = [...sampleProducts];
                 throw error;
@@ -908,14 +904,14 @@
         }
 
         function setupEventListeners() {
-            // Price range inputs
+          
             document.getElementById('min-price').addEventListener('input', debounce(filterProducts, 500));
             document.getElementById('max-price').addEventListener('input', debounce(filterProducts, 500));
 
-            // Sort select
+      
             document.getElementById('sort-select').addEventListener('change', sortProducts);
 
-            // View toggle
+        
             document.querySelectorAll('.view-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
@@ -928,12 +924,12 @@
         function updateCategoryFilters() {
             const categories = {};
 
-            // Count products in each category from current filtered results
+           
             filteredProducts.forEach(product => {
                 categories[product.category] = (categories[product.category] || 0) + 1;
             });
 
-            // Get total counts from all products for comparison
+           
             const totalCategories = {};
             allProducts.forEach(product => {
                 totalCategories[product.category] = (totalCategories[product.category] || 0) + 1;
@@ -1027,12 +1023,12 @@
                 return categoryMatch && brandMatch && locationMatch && priceMatch;
             });
 
-            // Update filter counts
+          
             updateCategoryFilters();
             updateBrandFilters();
             updateLocationFilters();
 
-            // Preserve checked states
+        
             checkedCategories.forEach(cat => {
                 const checkbox = document.querySelector(`input[name="category"][value="${cat}"]`);
                 if (checkbox) checkbox.checked = true;
@@ -1073,28 +1069,25 @@
             }
 
             container.innerHTML = productsToShow.map(product => {
-                // Handle API product structure vs sample product structure
                 const productId = product.id || 0;
                 const productTitle = product.title || 'Untitled Product';
                 const productCategory = product.category ? product.category.name || product.category : 'Uncategorized';
                 
-                // Get the first image URL from imageUrls array, fallback to imageUrl, then default image
                 const productImage = product.imageUrls && product.imageUrls.length > 0 
                     ? product.imageUrls[0] 
                     : (product.imageUrl || 'https://via.placeholder.com/300x300?text=No+Image');
 
-                // Format price - handle both string and number formats
+   
                 let productPrice = 0;
                 if (typeof product.price === 'number') {
                     productPrice = product.price;
                 } else if (typeof product.price === 'object' && product.price !== null) {
-                    // Handle BigDecimal from Java API
                     productPrice = parseFloat(product.price);
                 } else if (typeof product.price === 'string') {
                     productPrice = parseFloat(product.price);
                 }
 
-                // Optional fields with defaults
+               
                 const productRating = product.rating || 5.0;
                 const productReviews = product.reviews || 0;
                 const productLocation = product.location || (product.user ? product.user.address || 'Unknown location' : 'Unknown location');
@@ -1201,10 +1194,10 @@
 
             let paginationHTML = '';
 
-            // Previous button
+          
             paginationHTML += `<a href="#" class="pagination-btn ${currentPage === 1 ? 'disabled' : ''}" onclick="changePage(${currentPage - 1})">&laquo; Previous</a>`;
 
-            // Page numbers
+    
             const startPage = Math.max(1, currentPage - 2);
             const endPage = Math.min(totalPages, currentPage + 2);
 
@@ -1226,7 +1219,7 @@
                 paginationHTML += `<a href="#" class="pagination-btn" onclick="changePage(${totalPages})">${totalPages}</a>`;
             }
 
-            // Next button
+     
             paginationHTML += `<a href="#" class="pagination-btn ${currentPage === totalPages ? 'disabled' : ''}" onclick="changePage(${currentPage + 1})">Next &raquo;</a>`;
 
             pagination.innerHTML = paginationHTML;
@@ -1258,7 +1251,7 @@
             }
         }
 
-        // Clear filter functions
+    
         function clearAllFilters() {
             document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
             document.getElementById('min-price').value = '';
@@ -1293,7 +1286,7 @@
             filterProducts();
         }
 
-        // Utility function for debouncing
+        
         function debounce(func, wait) {
             let timeout;
             return function executedFunction(...args) {
@@ -1306,7 +1299,7 @@
             };
         }
 
-        // Product interaction functions
+     
         function viewProduct(id) {
             window.location.href = `productDetail.html?id=${id}`;
         }
@@ -1321,7 +1314,7 @@
         }
 
         function addToWishlist(productId) {
-            event.stopPropagation(); // Prevent product card click
+            event.stopPropagation(); 
 
             if (localStorage.getItem('isLoggedIn') !== 'true') {
                 alert('Please log in to add items to your wishlist');
@@ -1343,7 +1336,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    heartIcon.style.color = '#dc3545'; // Red color for added to wishlist
+                    heartIcon.style.color = '#dc3545'; 
                     showNotification('Product added to wishlist!', 'success');
                 } else {
                     showNotification(data.message || 'Failed to add product to wishlist', 'error');
@@ -1357,26 +1350,24 @@
 
         function quickView(id) {
             console.log('Quick view:', id);
-            // Show quick view modal
+            
             showNotification('Quick view feature coming soon!');
         }
 
         function showNotification(message, type = 'success') {
-            // Simple notification system
             const notification = document.createElement('div');
 
-            // Set background color based on notification type
-            let bgColor = '#007bff'; // Default blue
+            let bgColor = '#007bff'; 
             let icon = '<i class="fas fa-info-circle"></i> ';
 
             if (type === 'success') {
-                bgColor = '#28a745'; // Green
+                bgColor = '#28a745'; 
                 icon = '<i class="fas fa-check-circle"></i> ';
             } else if (type === 'error') {
-                bgColor = '#dc3545'; // Red
+                bgColor = '#dc3545';
                 icon = '<i class="fas fa-exclamation-circle"></i> ';
             } else if (type === 'warning') {
-                bgColor = '#ffc107'; // Yellow
+                bgColor = '#ffc107'; 
                 icon = '<i class="fas fa-exclamation-triangle"></i> ';
             }
 
@@ -1398,7 +1389,7 @@
 
             notification.innerHTML = icon + message;
 
-            // Add keyframes for animation
+           
             if (!document.querySelector('#notification-styles')) {
                 const style = document.createElement('style');
                 style.id = 'notification-styles';
