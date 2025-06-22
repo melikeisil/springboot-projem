@@ -63,7 +63,7 @@ public class User {
     @JsonIgnoreProperties("user")
     private List<Wishlist> wishlistItems;
 
-    // Constructors, Getters and Setters
+    
     public User() {}
 
     public User(String email, String password, String firstName, String lastName) {
@@ -73,7 +73,7 @@ public class User {
         this.lastName = lastName;
     }
 
-    // Getters and Setters
+   
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
