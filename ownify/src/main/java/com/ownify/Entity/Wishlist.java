@@ -32,7 +32,7 @@ public class Wishlist {
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    // ✅ Constructors eklendi
+  
     public Wishlist() {}
 
     public Wishlist(User user, Product product) {
@@ -40,7 +40,7 @@ public class Wishlist {
         this.product = product;
     }
 
-    // Getters and Setters
+  
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
