@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Support - Ownify</title>
-    <!-- Font Awesome -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="c.css">
     <style>
@@ -28,7 +28,7 @@
 
        
 
-        /* Customer Support Main Content */
+       
         .support-main {
             padding: 60px 0;
             background: #f8f9fa;
@@ -335,7 +335,7 @@
     </style>
 </head>
 <body>
-     <!-- Top Bar -->
+    
     <div class="top-bar">
         <div class="top-bar-content container">
             <div class="welcome-text">Welcome to Ownify Online marketplace platform.</div>
@@ -349,7 +349,7 @@
         </div>
     </div>
 
-    <!-- Header -->
+  
     <header class="header">
         <div class="header-content container">
             <div class="logo">
@@ -381,8 +381,7 @@
         </div>
     </header>
 
-    <!-- Navigation -->
-    <!-- Navigation -->
+
 <nav class="nav-section">
     <div class="header-bottom container">
         <div class="nav-menu">
@@ -435,7 +434,7 @@
     </div>
 </nav>
 
-    <!-- Breadcrumb -->
+ 
     <div class="breadcrumb-section">
         <div class="container">
             <div class="breadcrumb">
@@ -450,10 +449,10 @@
 
 
 
-    <!-- Customer Support Main Content -->
+
     <main class="support-main">
         <div class="container">
-            <!-- Hero Section -->
+    
             <div class="support-hero">
                 <div class="support-hero-content">
                     <div class="support-hero-badge">HELP CENTER</div>
@@ -468,7 +467,6 @@
                 </div>
             </div>
 
-            <!-- Support Categories -->
             <div class="support-categories">
                 <h2>What can we assist you with today?</h2>
                 <div class="categories-grid">
@@ -515,7 +513,6 @@
                 </div>
             </div>
 
-            <!-- Popular Topics -->
             <div class="popular-topics">
                 <h2>Popular Topics</h2>
                 <div class="topics-grid">
@@ -548,7 +545,7 @@
         </div>
     </main>
 
-    <!-- Contact Section -->
+
     <section class="contact-section">
         <div class="container">
             <h3>Don't find your answer.<br>Contact with us</h3>
@@ -572,7 +569,7 @@
     </section>
 
     
-      <!-- Footer -->
+
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -626,7 +623,7 @@
     </footer> 
 
     <script>
-        // Header Actions Functions
+
         function toggleWishlist() {
             alert('Wishlist functionality will be implemented');
         }
@@ -639,42 +636,42 @@
             alert('Profile functionality will be implemented');
         }
 
-        // Search functionality
+ 
         document.querySelector('.support-search button').addEventListener('click', function() {
             const searchInput = document.querySelector('.support-search input');
             const query = searchInput.value.trim();
             if (query) {
                 alert('Searching for: ' + query);
-                // Here you would implement actual search functionality
+                
             }
         });
 
-        // Enter key support for search
+       
         document.querySelector('.support-search input').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 document.querySelector('.support-search button').click();
             }
         });
 
-        // Category card click handlers
+    
         document.querySelectorAll('.category-card').forEach(card => {
             card.addEventListener('click', function() {
                 const title = this.querySelector('h3').textContent;
                 alert('Opening ' + title + ' section');
-                // Here you would navigate to specific help sections
+           
             });
         });
 
-        // Topic item click handlers
+      
         document.querySelectorAll('.topic-item').forEach(item => {
             item.addEventListener('click', function() {
                 const title = this.querySelector('h4').textContent;
                 alert('Opening FAQ: ' + title);
-                // Here you would show detailed FAQ content
+        
             });
         });
 
-        // Smooth scrolling for anchor links
+       
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -687,13 +684,13 @@
             });
         });
 
-        // Mobile menu functionality (for responsive design)
+      
         function toggleMobileMenu() {
             const navMenu = document.querySelector('.nav-menu');
             navMenu.classList.toggle('mobile-active');
         }
 
-        // Add mobile menu styles dynamically for better mobile experience
+     
         const style = document.createElement('style');
         style.textContent = `
             @media (max-width: 768px) {
@@ -712,26 +709,25 @@
         `;
         document.head.appendChild(style);
 
-// Arama fonksiyonları
+
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.querySelector('.search-input');
     const searchBtn = document.querySelector('.search-btn');
     
-    // Arama butonuna tıklayınca
+   
     searchBtn.addEventListener('click', function() {
         performSearch();
     });
     
-    // Enter tuşuna basınca
+
     searchInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             performSearch();
         }
     });
     
-    // Gerçek zamanlı arama (kullanıcı yazarken)
     searchInput.addEventListener('input', function() {
-        // Biraz gecikme ile arama yap (kullanıcı yazmayı bitirsin diye)
+       
         clearTimeout(window.searchTimeout);
         window.searchTimeout = setTimeout(performSearch, 300);
     });
@@ -742,13 +738,12 @@ document.addEventListener('DOMContentLoaded', function() {
         let foundCount = 0;
         
         products.forEach(product => {
-            // Ürün başlığı, açıklama, fiyat vb. alanları kontrol et
+     
             const productTitle = product.querySelector('.product-title, .product-name, h3, h4')?.textContent?.toLowerCase() || '';
             const productDescription = product.querySelector('.product-description, .product-desc, p')?.textContent?.toLowerCase() || '';
             const productPrice = product.querySelector('.price, .product-price')?.textContent?.toLowerCase() || '';
             const productCategory = product.getAttribute('data-category') || '';
             
-            // Tüm metin içeriğini birleştir
             const allText = `${productTitle} ${productDescription} ${productPrice} ${productCategory}`.toLowerCase();
             
             if (searchTerm === '' || allText.includes(searchTerm)) {
@@ -759,19 +754,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Sonuç sayısını göster
+   
         showSearchResults(searchTerm, foundCount);
     }
     
     function showSearchResults(searchTerm, count) {
-        // Varsa önceki sonuç mesajını kaldır
+
         const existingResult = document.querySelector('.search-result-message');
         if (existingResult) {
             existingResult.remove();
         }
         
         if (searchTerm !== '') {
-            // Sonuç mesajı oluştur
+    
             const resultMessage = document.createElement('div');
             resultMessage.className = 'search-result-message';
             resultMessage.style.cssText = `
@@ -794,7 +789,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
             }
             
-            // Ürün listesinin üstüne ekle
             const productContainer = document.querySelector('.products-container, .product-grid, .products-grid, main');
             if (productContainer) {
                 productContainer.insertBefore(resultMessage, productContainer.firstChild);
@@ -802,14 +796,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Global fonksiyon - Clear butonuna tıklayınca
+
     window.clearSearch = function() {
         searchInput.value = '';
-        performSearch(); // Tüm ürünleri göster
+        performSearch(); 
     }
 });
 
-// CSS stilleri dinamik olarak ekle
+
 const searchStyles = `
     .search-result-message {
         animation: fadeIn 0.3s ease-in;
@@ -830,7 +824,7 @@ const searchStyles = `
     }
 `;
 
-// Stilleri head'e ekle
+
 const styleSheet = document.createElement('style');
 styleSheet.textContent = searchStyles;
 document.head.appendChild(styleSheet);
