@@ -7,12 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
      <link rel="stylesheet" href="c.css">
     <style>
-        /* Mevcut CSS kodlarınız buraya gelecek */
-        /* Sadece ek CSS kodlarını buraya ekleyin */
+   
     </style>
 </head>
 <body>
-    <!-- Top Bar -->
+
     <div class="top-bar">
         <div class="container">
             <div class="top-bar-content">
@@ -27,7 +26,7 @@
         </div>
     </div>
 
-    <!-- Header -->
+
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -62,8 +61,7 @@
         </div>
     </header>
 
-    <!-- Navigation -->
-    <!-- Navigation -->
+ 
 <nav class="nav-section">
     <div class="header-bottom container">
         <div class="nav-menu">
@@ -117,7 +115,7 @@
 </nav>
 
 
-    <!-- Breadcrumb -->
+
     <div class="breadcrumb-section">
         <div class="container">
             <div class="breadcrumb">
@@ -128,7 +126,7 @@
         </div>
     </div>
 
-    <!-- FAQ Main Content -->
+
     <main class="faq-main">
         <div class="container">
             <div class="faq-section">
@@ -279,39 +277,39 @@
             const faqAnswer = element.nextElementSibling;
             const isActive = element.classList.contains('active');
             
-            // Tüm FAQ'ları kapat
+         
             document.querySelectorAll('.faq-question').forEach(btn => {
                 btn.classList.remove('active');
                 btn.nextElementSibling.classList.remove('active');
             });
             
-            // Eğer tıklanan FAQ aktif değilse, aç
+            
             if (!isActive) {
                 element.classList.add('active');
                 faqAnswer.classList.add('active');
             }
         }
 
-// Arama fonksiyonları
+
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.querySelector('.search-input');
     const searchBtn = document.querySelector('.search-btn');
     
-    // Arama butonuna tıklayınca
+ 
     searchBtn.addEventListener('click', function() {
         performSearch();
     });
     
-    // Enter tuşuna basınca
+
     searchInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             performSearch();
         }
     });
     
-    // Gerçek zamanlı arama (kullanıcı yazarken)
+
     searchInput.addEventListener('input', function() {
-        // Biraz gecikme ile arama yap (kullanıcı yazmayı bitirsin diye)
+     
         clearTimeout(window.searchTimeout);
         window.searchTimeout = setTimeout(performSearch, 300);
     });
@@ -322,13 +320,13 @@ document.addEventListener('DOMContentLoaded', function() {
         let foundCount = 0;
         
         products.forEach(product => {
-            // Ürün başlığı, açıklama, fiyat vb. alanları kontrol et
+           
             const productTitle = product.querySelector('.product-title, .product-name, h3, h4')?.textContent?.toLowerCase() || '';
             const productDescription = product.querySelector('.product-description, .product-desc, p')?.textContent?.toLowerCase() || '';
             const productPrice = product.querySelector('.price, .product-price')?.textContent?.toLowerCase() || '';
             const productCategory = product.getAttribute('data-category') || '';
             
-            // Tüm metin içeriğini birleştir
+       
             const allText = `${productTitle} ${productDescription} ${productPrice} ${productCategory}`.toLowerCase();
             
             if (searchTerm === '' || allText.includes(searchTerm)) {
@@ -339,19 +337,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Sonuç sayısını göster
+     
         showSearchResults(searchTerm, foundCount);
     }
     
     function showSearchResults(searchTerm, count) {
-        // Varsa önceki sonuç mesajını kaldır
+   
         const existingResult = document.querySelector('.search-result-message');
         if (existingResult) {
             existingResult.remove();
         }
         
         if (searchTerm !== '') {
-            // Sonuç mesajı oluştur
+
             const resultMessage = document.createElement('div');
             resultMessage.className = 'search-result-message';
             resultMessage.style.cssText = `
@@ -374,7 +372,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
             }
             
-            // Ürün listesinin üstüne ekle
+        
             const productContainer = document.querySelector('.products-container, .product-grid, .products-grid, main');
             if (productContainer) {
                 productContainer.insertBefore(resultMessage, productContainer.firstChild);
@@ -382,14 +380,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Global fonksiyon - Clear butonuna tıklayınca
+
     window.clearSearch = function() {
         searchInput.value = '';
-        performSearch(); // Tüm ürünleri göster
+        performSearch(); 
     }
 });
 
-// CSS stilleri dinamik olarak ekle
+
 const searchStyles = `
     .search-result-message {
         animation: fadeIn 0.3s ease-in;
@@ -410,7 +408,7 @@ const searchStyles = `
     }
 `;
 
-// Stilleri head'e ekle
+
 const styleSheet = document.createElement('style');
 styleSheet.textContent = searchStyles;
 document.head.appendChild(styleSheet);
