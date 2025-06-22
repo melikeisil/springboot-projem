@@ -57,7 +57,7 @@ public class Product {
     @JsonIgnoreProperties("product")
     private List<Wishlist> wishlistItems;
 
-    // Constructors, Getters and Setters
+   
     public Product() {}
 
     public Product(String title, String description, BigDecimal price, String brand, Category category, User user) {
@@ -69,7 +69,7 @@ public class Product {
         this.user = user;
     }
 
-    // Getters and Setters
+   
     public Long getId() {
         return id;
     }
