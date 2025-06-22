@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="c.css">
 </head>
 <body>
-    <!-- Top Bar -->
+   
     <div class="top-bar">
         <div class="container">
             <div class="top-bar-content">
@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    <!-- Header -->
+
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -58,8 +58,7 @@
         </div>
     </header>
 
-    <!-- Navigation Section -->
-    <!-- Navigation -->
+  
 <nav class="nav-section">
     <div class="header-bottom container">
         <div class="nav-menu">
@@ -113,7 +112,7 @@
 </nav>
 
 
-    <!-- Breadcrumb Section -->
+  
     <div class="breadcrumb-section">
         <div class="container">
             <div class="breadcrumb">
@@ -129,11 +128,11 @@
         </div>
     </div>
 
-    <!-- Dashboard Main Content -->
+   
     <div class="dashboard-main">
         <div class="container">
             <div class="dashboard-wrapper">
-                <!-- Dashboard Sidebar -->
+         
                 <div class="dashboard-sidebar">
                     <div class="dashboard-menu">
                         <div class="menu-item active">
@@ -155,12 +154,9 @@
 
 <script>
 window.onload = function() {
-  // Check if user is logged in via localStorage or has a valid session cookie
-  // The server-side session check will handle authentication properly
-  // This client-side check is just to prevent unnecessary redirects
+  
   if (localStorage.getItem("isLoggedIn") !== "true") {
-    // Instead of immediately redirecting, check if we were redirected from a successful login
-    // by checking the referrer or a URL parameter
+   
     const fromLogin = document.referrer.includes('/api/login') || 
                       document.referrer.includes('/login') ||
                       window.location.href.includes('/dashboard');
@@ -168,23 +164,23 @@ window.onload = function() {
     if (!fromLogin) {
       window.location.href = "signin.html";
     } else {
-      // If we came from login, set localStorage to prevent future redirects
+     
       localStorage.setItem("isLoggedIn", "true");
     }
   }
 
-  // Fetch user information from the server
+
   fetchUserInfo();
 }
 
-// Function to fetch user information from the server
+
 function fetchUserInfo() {
   fetch('/getUserInfo', {
     method: 'GET',
     headers: {
       'X-Requested-With': 'XMLHttpRequest'
     },
-    credentials: 'include' // Include session cookies
+    credentials: 'include' 
   })
   .then(response => {
     if (!response.ok) {
@@ -193,14 +189,14 @@ function fetchUserInfo() {
     return response.json();
   })
   .then(data => {
-    // Update the user details section with the actual user's information
+  
     const fullName = data.name + ' ' + data.surname;
     document.getElementById('user-name').textContent = fullName;
     document.getElementById('user-email').textContent = 'Email: ' + data.email;
   })
   .catch(error => {
     console.error('Error fetching user information:', error);
-    // If there's an error, show a message to the user
+   
     document.getElementById('user-name').textContent = 'Error loading user information';
     document.getElementById('user-email').textContent = 'Please refresh the page or try again later';
   });
@@ -219,10 +215,10 @@ function logout() {
                     </div>
                 </div>
 
-                <!-- Dashboard Content -->
+                
                 <div class="dashboard-content">
                     <div class="dashboard-sections">
-                        <!-- Account Info Section -->
+                     
                         <div class="account-section">
                             <div class="section-header">
                                 <h2>ACCOUNT INFO</h2>
@@ -238,7 +234,7 @@ function logout() {
                             </div>
                         </div>
 
-                        <!-- ADS Section -->
+                       
                         <div class="ads-section">
                             <div class="section-header">
                                 <h2>ADS</h2>
@@ -256,7 +252,7 @@ function logout() {
         </div>
     </div>
 
-    <!-- Footer -->
+  
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
