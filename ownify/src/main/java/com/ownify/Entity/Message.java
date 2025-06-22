@@ -35,7 +35,7 @@ public class Message {
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
     
-    // Constructors, Getters and Setters
+ 
     public Message() {}
     
     public Message(User sender, User receiver, String content) {
