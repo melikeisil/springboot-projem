@@ -1,4 +1,4 @@
-/* Reset ve Genel Stiller */
+
 * {
     margin: 0;
     padding: 0;
@@ -18,7 +18,7 @@ body {
     padding: 0 20px;
 }
 
-/* Top Bar */
+
 .top-bar {
     background-color: #2c3e50;
     color: white;
@@ -57,7 +57,7 @@ body {
     color: #ff6b35;
 }
 
-/* Header Stili */
+
 .header {
     background-color: #1a2332;
     color: white;
@@ -164,7 +164,7 @@ body {
     color: #fff;
 }
 
-/* Navigation Section - Beyaz Arka Plan */
+
 .nav-section {
     background-color: #fff;
     border-top: 3px solid #1a2332;
@@ -186,7 +186,7 @@ body {
     width: 100%;
 }
 
-/* Dropdown Stili */
+
 .dropdown {
     position: relative;
 }
@@ -232,7 +232,7 @@ body {
     display: block;
 }
 
-/* Category Item Container */
+
 .category-item {
     position: relative;
 }
@@ -253,7 +253,7 @@ body {
     padding-left: 20px;
 }
 
-/* Subcategory Content */
+
 .subcategory-content {
     display: none;
     position: absolute;
@@ -311,7 +311,7 @@ body {
     margin-left: auto;
 }
 
-/* Ana İçerik */
+
 .main-content {
     padding: 40px 0;
 }
@@ -323,7 +323,7 @@ body {
     align-items: start;
 }
 
-/* Hero Section */
+
 .hero-section {
     background-color: #1a2332;
     border-radius: 20px;
@@ -353,7 +353,6 @@ body {
     margin-top: 20px;
 }
 
-/* Reklam Kartları */
 .ad-card {
     border-radius: 15px;
     padding: 25px;
@@ -383,7 +382,7 @@ body {
     color: white;
 }
 
-/* Sol Sidebar Ürün Kartı */
+
 .product-image {
     text-align: center;
     margin-bottom: 15px;
@@ -441,7 +440,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* İndirim Kartı */
+
 .discount-badge {
     text-align: center;
 }
@@ -459,7 +458,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* Sağ Sidebar */
+
 .summer-badge {
     background-color: rgba(255,255,255,0.2);
     padding: 5px 15px;
@@ -505,7 +504,7 @@ body {
     background-color: rgba(255,255,255,0.2);
 }
 
-/* Sağ Alt Kart */
+
 .product-image-right {
     text-align: center;
     margin-bottom: 15px;
@@ -549,7 +548,7 @@ body {
     width: 100%;
 }
 
-/* Footer */
+
 .footer {
     background-color: #1a2332;
     color: white;
@@ -641,7 +640,7 @@ body {
     opacity: 0.6;
 }
 
-/* Responsive Tasarım */
+
 @media (max-width: 768px) {
     .top-bar-content {
         flex-direction: column;
@@ -692,7 +691,7 @@ body {
         gap: 30px;
     }
     
-    /* Mobile için subcategory düzenlemesi */
+  
     .subcategory-content {
         position: static;
         display: none;
@@ -718,9 +717,9 @@ body {
         padding: 0 15px;
     }
 }
-/* Sign In Page Ek Stiller - Mevcut CSS dosyanıza eklenecek */
 
-/* Breadcrumb Section */
+
+
 .breadcrumb-section {
     background-color: #f8f9fa;
     padding: 15px 0;
@@ -757,7 +756,7 @@ body {
     font-weight: 500;
 }
 
-/* Sign In Section */
+
 .signin-section {
     padding: 60px 0;
     background-color: #fff;
@@ -775,7 +774,7 @@ body {
     overflow: hidden;
 }
 
-/* Sign In Tabs */
+
 .signin-tabs {
     display: flex;
     background-color: #f8f9fa;
@@ -804,7 +803,7 @@ body {
     color: #ff6b35;
 }
 
-/* Sign In Form */
+
 .signin-form {
     padding: 40px;
 }
@@ -833,7 +832,7 @@ body {
     color: #999;
 }
 
-/* Password Container */
+
 .password-container {
     position: relative;
     margin-bottom: 10px;
@@ -868,7 +867,7 @@ body {
     opacity: 0.8;
 }
 
-/* Sign In Button */
+
 .signin-btn {
     width: 100%;
     padding: 15px;
@@ -896,7 +895,7 @@ body {
     font-size: 14px;
 }
 
-/* Social Sign In */
+
 .social-signin {
     display: flex;
     flex-direction: column;
@@ -989,9 +988,8 @@ body {
         font-size: 13px;
     }
 }
-/* Sign In Page Ek Stiller - Mevcut CSS dosyanıza eklenecek */
 
-/* Category Dropdown Enhancements for Sign-in Page */
+
 .dropdown-btn {
     background-color: #ff6b35;
     color: white;
@@ -1021,7 +1019,7 @@ body {
     margin-left: auto;
 }
 
-/* Breadcrumb Section */
+
 .breadcrumb-section {
     background-color: #f8f9fa;
     padding: 15px 0;
@@ -1058,7 +1056,7 @@ body {
     font-weight: 500;
 }
 
-/* Sign In Section */
+
 .signin-section {
     padding: 60px 0;
     background-color: #fff;
@@ -1076,7 +1074,7 @@ body {
     overflow: hidden;
 }
 
-/* Sign In Tabs */
+
 .signin-tabs {
     display: flex;
     background-color: #f8f9fa;
@@ -1105,7 +1103,7 @@ body {
     color: #ff6b35;
 }
 
-/* Sign In Form */
+
 .signin-form {
     padding: 40px;
 }
@@ -1134,7 +1132,7 @@ body {
     color: #999;
 }
 
-/* Password Container */
+
 .password-container {
     position: relative;
     margin-bottom: 10px;
@@ -1169,7 +1167,7 @@ body {
     opacity: 0.8;
 }
 
-/* Sign In Button */
+
 .signin-btn {
     width: 100%;
     padding: 15px;
@@ -1197,7 +1195,7 @@ body {
     font-size: 14px;
 }
 
-/* Social Sign In */
+
 .social-signin {
     display: flex;
     flex-direction: column;
@@ -1243,7 +1241,7 @@ body {
     font-size: 18px;
 }
 
-/* Responsive Design for Sign In */
+
 @media (max-width: 768px) {
     .signin-section {
         padding: 40px 0;
@@ -1290,9 +1288,8 @@ body {
         font-size: 13px;
     }
 }
-/* Sign In Page Ek Stiller - Mevcut CSS dosyanıza eklenecek */
 
-/* Category Dropdown Enhancements for Sign-in Page */
+
 .dropdown-btn {
     background-color: #fff;
     color: #333;
@@ -1331,7 +1328,7 @@ body {
     transition: color 0.3s;
 }
 
-/* Breadcrumb Section */
+
 .breadcrumb-section {
     background-color: #f8f9fa;
     padding: 15px 0;
@@ -1368,7 +1365,7 @@ body {
     font-weight: 500;
 }
 
-/* Sign In Section */
+
 .signin-section {
     padding: 60px 0;
     background-color: #fff;
@@ -1386,7 +1383,7 @@ body {
     overflow: hidden;
 }
 
-/* Sign In Tabs */
+
 .signin-tabs {
     display: flex;
     background-color: #f8f9fa;
@@ -1415,7 +1412,7 @@ body {
     color: #ff6b35;
 }
 
-/* Sign In Form */
+
 .signin-form {
     padding: 40px;
 }
@@ -1444,7 +1441,7 @@ body {
     color: #999;
 }
 
-/* Password Container */
+
 .password-container {
     position: relative;
     margin-bottom: 10px;
@@ -1479,7 +1476,7 @@ body {
     opacity: 0.8;
 }
 
-/* Sign In Button */
+
 .signin-btn {
     width: 100%;
     padding: 15px;
@@ -1507,7 +1504,7 @@ body {
     font-size: 14px;
 }
 
-/* Social Sign In */
+
 .social-signin {
     display: flex;
     flex-direction: column;
@@ -1553,7 +1550,7 @@ body {
     font-size: 18px;
 }
 
-/* Responsive Design for Sign In */
+
 @media (max-width: 768px) {
     .signin-section {
         padding: 40px 0;
