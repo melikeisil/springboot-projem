@@ -17,9 +17,9 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Check if categories already exist
+        
         if (categoryRepository.count() == 0) {
-            // Create categories that match the IDs in adPosting.html
+            
             List<Category> categories = Arrays.asList(
                 new Category("Computer & Laptop", "All computer and laptop related products"),
                 new Category("Car", "All car related products"),
@@ -30,7 +30,7 @@ public class DataInitializer implements CommandLineRunner {
                 new Category("Land", "All land related listings")
             );
             
-            // Save all categories
+           
             categoryRepository.saveAll(categories);
             
             System.out.println("Categories initialized successfully!");
