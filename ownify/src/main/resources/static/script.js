@@ -1,58 +1,56 @@
-// Ownify Marketplace JavaScript
+
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Search Functionality
+    
     const searchInput = document.querySelector('.search-input');
     const searchBtn = document.querySelector('.search-btn');
     
-    // Search button click event
+ 
     searchBtn.addEventListener('click', function() {
         performSearch();
     });
     
-    // Search on Enter key press
+  
     searchInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             performSearch();
         }
     });
     
-    // Search function
+   
     function performSearch() {
         const query = searchInput.value.trim();
         if (query) {
             console.log('Searching for:', query);
-            // Here you would typically send the search query to your backend
             showSearchResults(query);
         }
     }
     
-    // Mock search results display
+ 
     function showSearchResults(query) {
         alert(`Searching for: "${query}"\nThis would show search results in a real application.`);
     }
     
-    // Category Dropdown Enhanced Functionality
+ 
     const dropdown = document.querySelector('.dropdown');
     const dropdownBtn = document.querySelector('.dropdown-btn');
     const dropdownContent = document.querySelector('.dropdown-content');
     
     if (dropdown && dropdownBtn && dropdownContent) {
-        // Toggle dropdown on click (mobile support)
         dropdownBtn.addEventListener('click', function(e) {
             e.preventDefault();
             dropdownContent.style.display = 
                 dropdownContent.style.display === 'block' ? 'none' : 'block';
         });
         
-        // Close dropdown when clicking outside
+     
         document.addEventListener('click', function(e) {
             if (!dropdown.contains(e.target)) {
                 dropdownContent.style.display = 'none';
             }
         });
         
-        // Category selection
+  
         const categoryItems = document.querySelectorAll('.main-category');
         categoryItems.forEach(item => {
             item.addEventListener('click', function(e) {
@@ -60,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const categoryName = this.textContent;
                 console.log('Selected category:', categoryName);
                 dropdownContent.style.display = 'none';
-                // Update dropdown button text
+          
                 const categoryText = dropdownBtn.querySelector('text') || dropdownBtn.childNodes[2];
                 if (categoryText) {
                     categoryText.textContent = categoryName;
@@ -69,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Header Icons Functionality
+    
     const heartIcon = document.querySelector('.fa-heart');
     const commentIcon = document.querySelector('.fa-comment');
     
@@ -88,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Shop Now Button Functionality
+  
     const shopBtns = document.querySelectorAll('.shop-btn, .shop-btn-small, .shop-btn-right');
     shopBtns.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -114,14 +112,14 @@ document.addEventListener('DOMContentLoaded', function() {
         `);
         document.body.appendChild(modal);
         
-        // Add to cart functionality
+       
         const addToCartBtn = modal.querySelector('.add-to-cart-btn');
         addToCartBtn.addEventListener('click', function() {
             console.log('Added to cart:', productName);
             alert(`${productName} added to cart!`);
         });
         
-        // Buy now functionality
+ 
         const buyNowBtn = modal.querySelector('.buy-now-btn');
         buyNowBtn.addEventListener('click', function() {
             console.log('Buy now clicked for:', productName);
@@ -129,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Modal Creation Function
+
     function createModal(title, content) {
         const modal = document.createElement('div');
         modal.className = 'modal-overlay';
@@ -145,13 +143,13 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
         
-        // Close modal functionality
+      
         const closeBtn = modal.querySelector('.close-btn');
         closeBtn.addEventListener('click', function() {
             document.body.removeChild(modal);
         });
         
-        // Close modal on overlay click
+      
         modal.addEventListener('click', function(e) {
             if (e.target === modal) {
                 document.body.removeChild(modal);
@@ -161,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return modal;
     }
     
-    // Smooth Scrolling for Navigation Links
+
     const navLinks = document.querySelectorAll('a[href^="#"]');
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -177,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Contact Phone Click
+
     const phoneNumber = document.querySelector('.contact-info span');
     if (phoneNumber) {
         phoneNumber.style.cursor = 'pointer';
@@ -186,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Social Media Links
+
     const socialLinks = document.querySelectorAll('.follow-links a');
     socialLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -207,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Animate elements on scroll
+ 
     function animateOnScroll() {
         const elements = document.querySelectorAll('.ad-card, .hero-section');
         
@@ -222,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initialize animation styles
+  
     const animatedElements = document.querySelectorAll('.ad-card, .hero-section');
     animatedElements.forEach(element => {
         element.style.opacity = '0';
@@ -230,40 +228,38 @@ document.addEventListener('DOMContentLoaded', function() {
         element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     });
     
-    // Scroll event listener
+
     window.addEventListener('scroll', animateOnScroll);
     
-    // Initial animation trigger
+  
     animateOnScroll();
     
-    // Mobile Menu Toggle
+
     const mobileMenuToggle = document.createElement('button');
     mobileMenuToggle.className = 'mobile-menu-toggle';
     mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
     mobileMenuToggle.style.display = 'none';
     
-    // Responsive behavior
+
     function handleResize() {
         if (window.innerWidth <= 768) {
-            // Mobile specific adjustments
             const headerContent = document.querySelector('.header-content');
             if (headerContent && !headerContent.querySelector('.mobile-menu-toggle')) {
                 headerContent.appendChild(mobileMenuToggle);
                 mobileMenuToggle.style.display = 'block';
             }
         } else {
-            // Desktop behavior
             mobileMenuToggle.style.display = 'none';
         }
     }
     
     window.addEventListener('resize', handleResize);
-    handleResize(); // Initial call
+    handleResize(); 
     
     console.log('Ownify marketplace JavaScript loaded successfully!');
 });
 
-// Add CSS for modal and animations
+
 const style = document.createElement('style');
 style.textContent = `
     .modal-overlay {
