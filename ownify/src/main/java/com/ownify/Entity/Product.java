@@ -1,6 +1,7 @@
 package com.ownify.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -50,7 +51,8 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties({"products", "wishlistItems"})
+    // Products are public: expose only the seller's id and name, never contact details
+    @JsonIncludeProperties({"id", "firstName", "lastName"})
     private User user;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)

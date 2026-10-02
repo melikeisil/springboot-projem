@@ -26,8 +26,7 @@ public class SecurityConfig {
                     "/api/**", "/ownify-chat/**", "/ownify/**", "/login",
                     "/wishlist/**", "/dashboard/**", "/messaging/**",
                     "/api/users/check-email", "/api/users/forgot-password",
-                    "/api/users/reset-password", "/api/users/change-password",
-                    "/h2-console/**" // H2 için CSRF devre dışı
+                    "/api/users/reset-password", "/api/users/change-password"
                 )
             )
             .sessionManagement(session -> session
@@ -40,15 +39,14 @@ public class SecurityConfig {
                     "/forgotPass", "/css/**", "/js/**", "/images/**",
                     "/dashboard.html", "/dashboardSetting.html", 
                     "/adPosting.html", "/wishlist.html", 
-                    "/dashboard/**",
-                    "/h2-console/**" // H2 için izin verildi
+                    "/dashboard/**"
                 ).permitAll()
                 .anyRequest().permitAll()
             )
             .formLogin(form -> form.disable())
             .httpBasic(basic -> basic.disable())
             .headers(headers -> headers
-                .frameOptions(frame -> frame.sameOrigin()) // H2 iframe için gerekli
+                .frameOptions(frame -> frame.sameOrigin())
             )
             .logout(logout -> logout.disable());
 

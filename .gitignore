@@ -1,0 +1,9 @@
+# Local H2 database files
+*.mv.db
+*.trace.db
+
+# Stray build/IDE output
+bin/
+
+# Local environment variables
+.env
