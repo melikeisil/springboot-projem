@@ -1,4 +1,4 @@
-# springboot-projem1 Ownify
+# Ownify
 Ownify is a modern web application that enables users to register, log in, add and list products, manage wishlists, and communicate via messaging. The backend is built with Spring Boot, while the frontend uses static HTML, CSS, and JavaScript files for a responsive and user-friendly experience.
 
 ---
@@ -18,8 +18,9 @@ Ownify is a modern web application that enables users to register, log in, add a
 ## Project Structure
 
 ```
-springboot-projem/
+Ownify/
 ├── README.md
+├── .gitignore
 └── ownify/                      # Spring Boot application (Maven project)
     ├── src/
     │   ├── main/
@@ -34,8 +35,8 @@ springboot-projem/
     │   │       ├── static/          # Static files (index.html, CSS, JS, images)
     │   │       └── application.properties # App configuration
     │   └── test/                    # Test files
-    ├── pom.xml                  # Maven dependencies
-    └── mvnw, mvnw.cmd           # Maven wrapper
+    ├── pom.xml                      # Maven dependencies
+    └── mvnw, mvnw.cmd               # Maven wrapper
 ```
 
 ---
@@ -50,11 +51,10 @@ springboot-projem/
 ### Installation
 
 1. **Clone the Repository**
-   ```
-   git clone <repository-url>
-   cd springboot-projem/ownify
-   ```
-
+```
+   git clone https://github.com/melikeisil/Ownify.git
+   cd Ownify/ownify
+```
 2. **Set environment variables** (see [Environment Variables](#environment-variables))
    ```
    export DB_PASSWORD='<choose-a-database-password>'
