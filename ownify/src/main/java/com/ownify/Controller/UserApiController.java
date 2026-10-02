@@ -3,6 +3,7 @@ package com.ownify.Controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ownify.Entity.User;
 import com.ownify.Service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +78,7 @@ public class UserApiController {
 
   
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials, HttpSession session) {
+    public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials, HttpServletRequest request, HttpSession session) {
         try {
             Optional<User> user = userService.loginUser(
                 credentials.get("email"),
@@ -85,6 +86,8 @@ public class UserApiController {
             );
 
             if (user.isPresent()) {
+                // Issue a new session id on login to prevent session fixation
+                request.changeSessionId();
                 session.setAttribute("user", user.get());
                 return ResponseEntity.ok(user.get());
             } else {
