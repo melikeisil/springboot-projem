@@ -158,6 +158,28 @@ Password hashes are never included in API responses.
 
 ---
 
+## Security notes
+
+> **This is an educational project and must not be used in production as is.**
+
+- **All paths are permitted.** `SecurityConfig` ends with `anyRequest().permitAll()`; Spring Security does
+  not authenticate requests. Access control is done manually in controllers by checking the `user`
+  attribute in the HTTP session, and only where that check has been added.
+- **CSRF protection is disabled on most paths**, including `/api/**`, `/dashboard/**`, `/wishlist/**`,
+  `/messaging/**`, `/login` and the WebSocket endpoints.
+- **Session cookies are not marked secure** (`server.servlet.session.cookie.secure=false`) so the app
+  works over plain HTTP locally.
+- Things that are in place: passwords are hashed with BCrypt and never returned in API responses;
+  `GET/PUT /api/users/{id}` only allow access to your own record; the session id is rotated on login;
+  public product responses only include the seller's id and name; chat messages take the sender from
+  the logged-in session and are rejected without one; secrets are read from environment variables;
+  the H2 console is off by default.
+
+Before any real deployment you would at least need proper Spring Security authentication and
+authorization rules, CSRF protection, HTTPS with secure cookies, and a production database.
+
+---
+
 ## Contribution
 
 Contributions are welcome! To contribute:
