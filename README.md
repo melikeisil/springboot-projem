@@ -158,25 +158,28 @@ Password hashes are never included in API responses.
 
 ---
 
-## Security notes
+## Security Notes and Roadmap
 
-> **This is an educational project and must not be used in production as is.**
+> **Ownify is under active development.** This is not a final release and has not yet been hardened for production use.
 
-- **All paths are permitted.** `SecurityConfig` ends with `anyRequest().permitAll()`; Spring Security does
-  not authenticate requests. Access control is done manually in controllers by checking the `user`
-  attribute in the HTTP session, and only where that check has been added.
-- **CSRF protection is disabled on most paths**, including `/api/**`, `/dashboard/**`, `/wishlist/**`,
-  `/messaging/**`, `/login` and the WebSocket endpoints.
-- **Session cookies are not marked secure** (`server.servlet.session.cookie.secure=false`) so the app
-  works over plain HTTP locally.
-- Things that are in place: passwords are hashed with BCrypt and never returned in API responses;
-  `GET/PUT /api/users/{id}` only allow access to your own record; the session id is rotated on login;
-  public product responses only include the seller's id and name; chat messages take the sender from
-  the logged-in session and are rejected without one; secrets are read from environment variables;
-  the H2 console is off by default.
+**What is in place today**
+- Passwords are hashed with BCrypt and are never returned in API responses.
+- `GET/PUT /api/users/{id}` only allow access to your own record.
+- The session id is rotated on login.
+- Public product responses only include the seller's id and name.
+- Chat messages take the sender from the logged-in session and are rejected without one.
+- Secrets are read from environment variables, and the H2 console is off by default.
 
-Before any real deployment you would at least need proper Spring Security authentication and
-authorization rules, CSRF protection, HTTPS with secure cookies, and a production database.
+**Known limitations**
+- `SecurityConfig` currently ends with `anyRequest().permitAll()`. Access control is done manually in controllers by checking the `user` attribute in the HTTP session, and only where that check has been added.
+- CSRF protection is disabled on most paths, including `/api/**`, `/dashboard/**`, `/wishlist/**`, `/messaging/**`, `/login` and the WebSocket endpoints.
+- Session cookies are not marked secure (`server.servlet.session.cookie.secure=false`) so the app works over plain HTTP locally.
+
+**Planned improvements**
+- Proper Spring Security authentication and authorization rules
+- CSRF protection
+- HTTPS with secure cookies
+- A production-ready database
 
 ---
 
