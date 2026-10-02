@@ -51,6 +51,8 @@ public class AuthController {
     public String register(@ModelAttribute User user, 
                           RedirectAttributes redirectAttributes) {
         try {
+            // Ignore any client-supplied id so registration can never overwrite an existing user
+            user.setId(null);
             userService.registerUser(user);
             redirectAttributes.addFlashAttribute("success", "Registration successful! Please login.");
             return "redirect:/signin";
