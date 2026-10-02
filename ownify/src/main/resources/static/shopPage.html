@@ -1090,7 +1090,7 @@
                
                 const productRating = product.rating || 5.0;
                 const productReviews = product.reviews || 0;
-                const productLocation = product.location || (product.user ? product.user.address || 'Unknown location' : 'Unknown location');
+                const productLocation = product.location || 'Unknown location';
                 const productOldPrice = product.oldPrice || null;
 
                 return `
