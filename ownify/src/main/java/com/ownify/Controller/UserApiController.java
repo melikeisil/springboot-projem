@@ -3,8 +3,10 @@ package com.ownify.Controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ownify.Entity.User;
 import com.ownify.Service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -90,30 +92,17 @@ public class UserApiController {
 
   
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials, jakarta.servlet.http.HttpSession session) {
+    public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials, HttpSession session) {
         try {
-            System.out.println("Login attempt for email: " + credentials.get("email"));
-            System.out.println("Session ID before login: " + session.getId());
-
             Optional<User> user = userService.loginUser(
                 credentials.get("email"),
                 credentials.get("password")
             );
 
             if (user.isPresent()) {
-               
                 session.setAttribute("user", user.get());
-                System.out.println("User logged in successfully: " + user.get().getEmail());
-                System.out.println("Session ID after login: " + session.getId());
-                System.out.println("Session attributes after login: ");
-                java.util.Enumeration<String> attributeNames = session.getAttributeNames();
-                while (attributeNames.hasMoreElements()) {
-                    String name = attributeNames.nextElement();
-                    System.out.println(name + ": " + session.getAttribute(name));
-                }
                 return ResponseEntity.ok(user.get());
             } else {
-                System.out.println("Login failed: Invalid email or password");
                 return ResponseEntity.badRequest().body(Map.of("error", "Invalid email or password"));
             }
         } catch (Exception e) {
@@ -123,7 +112,12 @@ public class UserApiController {
 
     
     @GetMapping("/users/{id}")
-    public ResponseEntity<?> getUser(@PathVariable Long id) {
+    public ResponseEntity<?> getUser(@PathVariable Long id, HttpSession session) {
+        ResponseEntity<?> denied = checkOwnership(id, session);
+        if (denied != null) {
+            return denied;
+        }
+
         Optional<User> user = userService.findById(id);
         if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
@@ -141,7 +135,12 @@ public class UserApiController {
 
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable Long id, @Valid @RequestBody User updatedUser, BindingResult bindingResult) {
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @Valid @RequestBody User updatedUser, BindingResult bindingResult, HttpSession session) {
+        ResponseEntity<?> denied = checkOwnership(id, session);
+        if (denied != null) {
+            return denied;
+        }
+
         if (bindingResult.hasErrors()) {
             Map<String, String> errors = new HashMap<>();
             for (FieldError error : bindingResult.getFieldErrors()) {
@@ -160,6 +159,7 @@ public class UserApiController {
                 if (updatedUser.getAddress() != null) user.setAddress(updatedUser.getAddress());
 
                 User savedUser = userService.updateUser(user);
+                session.setAttribute("user", savedUser);
                 return ResponseEntity.ok(savedUser);
             } else {
                 return ResponseEntity.notFound().build();
@@ -168,4 +168,16 @@ public class UserApiController {
             return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
         }
     }
-} 
+
+    // Returns 401 if no user is logged in, 403 if the logged-in user is not the owner of the record, otherwise null.
+    private ResponseEntity<?> checkOwnership(Long id, HttpSession session) {
+        User sessionUser = (User) session.getAttribute("user");
+        if (sessionUser == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "User not logged in"));
+        }
+        if (!id.equals(sessionUser.getId())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Map.of("error", "Access denied"));
+        }
+        return null;
+    }
+}
