@@ -27,15 +27,11 @@ public class AuthController {
                        @RequestParam String password,
                        HttpSession session, 
                        RedirectAttributes redirectAttributes) {
-        System.out.println("Form login attempt for email: " + email);
-        System.out.println("Session ID before form login: " + session.getId());
-
         Optional<User> user = userService.loginUser(email, password);
         if (user.isPresent()) {
             session.setAttribute("user", user.get());
             return "redirect:/dashboard";
         } else {
-            System.out.println("Form login failed: Invalid email or password");
             redirectAttributes.addFlashAttribute("error", "Invalid email or password");
             return "redirect:/signin";
         }

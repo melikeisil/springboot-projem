@@ -32,16 +32,6 @@ public class UserApiController {
     @PostMapping(value = "/users", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> registerUser(@RequestBody Map<String, String> userData) {
         try {
-            System.out.println("=== RECEIVED USER DATA ===");
-            userData.forEach((key, value) -> {
-                if (key.equals("password")) {
-                    System.out.println(key + ": [HIDDEN]");
-                } else {
-                    System.out.println(key + ": '" + value + "'");
-                }
-            });
-
-           
             Map<String, String> errors = new HashMap<>();
 
             String firstName = userData.get("firstName");
@@ -63,8 +53,6 @@ public class UserApiController {
             }
 
             if (!errors.isEmpty()) {
-                System.out.println("=== VALIDATION ERRORS ===");
-                errors.forEach((field, message) -> System.out.println(field + ": " + message));
                 return ResponseEntity.badRequest().body(errors);
             }
 
@@ -76,9 +64,6 @@ public class UserApiController {
             user.setLastName(lastName.trim());
 
             User registeredUser = userService.registerUser(user);
-            System.out.println("=== USER REGISTERED SUCCESSFULLY ===");
-            System.out.println("User ID: " + registeredUser.getId());
-            System.out.println("Email: " + registeredUser.getEmail());
 
             return ResponseEntity.ok(registeredUser);
 
